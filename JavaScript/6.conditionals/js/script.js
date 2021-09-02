@@ -1,7 +1,7 @@
 "use strict";
 
 if (4 == 9) {
-    console.log("ok!")  
+    console.log("ok!");  
 } else {
     console.log("Error");
 } 
@@ -18,7 +18,7 @@ if (num < 49) {
 // _____________________
 
 // !  тернарний оператор '?'
-(num === 50)  ? console.log('ok!') : console.log('Error');
+// (num === 50)  ? console.log('ok!') : console.log('Errorr') ;
 
 // _____________________
 
