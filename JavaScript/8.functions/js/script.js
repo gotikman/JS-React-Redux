@@ -11,11 +11,11 @@ showFirstMessage ('Йоу');
 console.log(num);
 // _____________________
 
-function calc( a, b ) {
-    return( a + b );
-}
+// function calc( a, b ) {
+//     return( a + b );
+// }
 
-console.log(calc( 4 , 3 ));
+// console.log(calc( 4 , 3 ));
 // console.log(calc( 55 , 44 ));
 // console.log(calc( 22 , 55 ));
 
@@ -35,4 +35,9 @@ console.log(anotherNum);
 
 const logger = function(){
     console.log('Hello');
-}
+};
+
+logger();
+
+const calc = (a, b) => a + b;
+console.log(calc(2, 3));
