@@ -40,5 +40,3 @@ for (let key in options) {
     }    
 }
 console.log(counter); 
-
-
