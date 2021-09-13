@@ -32,6 +32,7 @@ console.log(typeof(parseInt('15px', 10)));  // команду юзають рі�
 //! To boolean
 
 //? значення false =  0, '', null, undefined, NaN;
+//? значення true = [], { }, 1, 'abv';
 
 // 1)
 let switcher = null;
