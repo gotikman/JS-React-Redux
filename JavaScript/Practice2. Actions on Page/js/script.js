@@ -41,7 +41,7 @@ genre.textContent = "драма";
 poster.style.backgroundImage = 'url("img/bg.jpg")';
 
 
-movieList.innerHTML = '';
+movieList.innerHTML = ''; // видаляєм вміст
 
 movieDB.movies.sort();
 
