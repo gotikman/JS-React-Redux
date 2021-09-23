@@ -1,3 +1,6 @@
+= Udemy lason =
+https://www.udemy.com/course/javascript_full/learn/lecture/18917300
+
 Деструктуризация объекта
 https://learn.javascript.ru/destructuring#destrukturizatsiya-obekta
 

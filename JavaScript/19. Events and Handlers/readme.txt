@@ -1,3 +1,7 @@
+
+= Udemy lason =
+https://www.udemy.com/course/javascript_full/learn/lecture/19132760
+
 Список популярних подій JavaScript
 https://oddler.ru/blog/i63
 

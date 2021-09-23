@@ -1,4 +1,7 @@
 
+= Udemy lason =
+https://www.udemy.com/course/javascript_full/learn/lecture/18917100
+
 https://learn.javascript.ru/string
 https://learn.javascript.ru/number
 

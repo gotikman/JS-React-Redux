@@ -1,3 +1,6 @@
+= Udemy lason =
+https://www.udemy.com/course/javascript_full/learn/lecture/18917456
+
 Алгоритм швидкого сортування
 http://algolist.ru/sort/quick_sort.php
 

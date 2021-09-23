@@ -1,3 +1,6 @@
+= Udemy lason =
+https://www.udemy.com/course/javascript_full/learn/lecture/19081172
+
 Spread syntax
 https://developer.mozilla.org/ru/docs/Web/JavaScript/Reference/Operators/Spread_syntax
 
