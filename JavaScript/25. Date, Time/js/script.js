@@ -3,7 +3,8 @@
 let nowTime = new Date();            //? отримаєм актуальну дату --> 2021-09-23T13:54:50.444Z
 
 //! Передаєм значення в дату      
-nowTime = new Date('2021-10-19');    //? можна передати значення як STRING // new Date.parse('2021-10-19')
+nowTime = Date.parse('2021-10-19');  //? можна передати значення як STRING результат в мілісекундах
+nowTime = new Date('2021-10-19');    //? можна передати значення як STRING 
 nowTime = new Date(2020, 5, 1, 20);  //? можна передати числові значення    --> 2020-06-01T17:00:00.000Z
 nowTime = new Date(0);               //? передаєм мілісек., початок з 2070р.--> 1970-01-01T00:00:00.000Z
 
@@ -42,3 +43,16 @@ for (let i = 0; i < 100000; i++) {
 let end = new Date();              //кінець
 
 alert(`Цикл відпрацював за ${ end - start } мілісекунд`);  // Цикл відпрацював за 12 мілісекунд
+
+
+//! власні експеременти
+const temp = Date.parse('2021-10-19');
+console.log(temp);
+// console.log(new Date(Date.parse('2021-10-19')));
+// console.log(Date(Date.parse('2021-10-19')));
+
+let oldTime = new Date('2021-09-23');
+let newTime = new Date('2021-10-19');
+console.log((newTime - oldTime) / 1000 / 60 / 60 / 24);
+console.log((newTime - oldTime) / (1000 * 60 * 60 * 24));
+
