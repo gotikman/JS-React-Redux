@@ -41,3 +41,17 @@ logger();
 
 const calc = (a, b) => a + b;
 console.log(calc(2, 3));
+
+//! Стрілкові функції
+
+const double1 = (a) => {
+    return a * 2;
+};
+const double2 = (a) => a * 2; 
+const double3 = (a, b) => a * b;
+const double4 = a => a * 2;
+
+console.log(double1(5));
+console.log(double2(10));
+console.log(double3(10, 5));
+console.log(double4(20));
