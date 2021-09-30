@@ -18,15 +18,17 @@ showThis(4, 5);
 const obj = {
     a: 20,
     b: 15,
-    sum: function() {
-        // console.log(this);    // {a: 20, b: 15, sum: ƒ} // this - сам обєкт
+    summary: function() {
+        console.log(this);          // {a: 20, b: 15, sum: ƒ} // this - сам обєкт
         function shout() {
-            console.log(this);   // undefined , тому що це вже не метод обєкта а простий визов фун.
+            console.log(this);     // undefined , тому що це вже не метод обєкта а простий визов фун.
         }
+        const fun = () => console.log(this.a + this.b) ;  // стрілкова унаслідує this від батька
         shout();
+        fun();
     }
 };
-obj.sum();
+obj.summary();
 
 //!  3) Контекст this в конструкторах new і class - це новий екземпляр обєкта
 
@@ -52,21 +54,20 @@ function sayName(surname) {
 const user = {
     name: "Ivan"
 };
-sayName.call(user, 'Petrenko');       // привязуєм контекст user до функції
-sayName.apply(user, ['Petrenko']);    // привязуєм контекст user до функції
+sayName.call(user, 'Dyda');       // привязуєм контекст обєкт user до функції
+sayName.apply(user, ['Dyda']);    // привязуєм контекст обєкт user до функції
 
 //! 5) Ручна привязка контексту this: bind - створює нову функцію і під неї привязує контекст
 
 function count(num) {
     return this*num;
 }
-
+//    new-f    old-f     this
 const double = count.bind(2);        // поміщаєму в double нову функцію, 2 = this
+
 console.log(double(3));
 console.log(double(13));
 
-
-// _______ practice _______ 
 
 //! 6)  Контекст this в обродниках будій буде сам елемент на якогму відбулася подія
 const btn = document.querySelector('button');
