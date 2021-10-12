@@ -258,35 +258,35 @@ window.addEventListener('DOMContentLoaded', () => {
                 margin: 0 auto;
                 `;
                                 
-            form.insertAdjacentElement('afterend', statusMessage);       
-    
+            form.insertAdjacentElement('afterend', statusMessage); 
+          
+            const request = new XMLHttpRequest();                            //! створюєм обєкт запиту
+            request.open('POST', 'server.php');                              //! iніціалізація запиту
+           
+            request.setRequestHeader('Content-type', 'application/json');
             const formData = new FormData(form);      //! створюєм обєкт FD в який буде приходити форма що передали
 
             //! FormData конвертуєм в JSON
             const object = {};    // Обєкт для заливки з FormData
             formData.forEach(function(value, key) {
                 object[key] = value;
-            });     
-            
-
-            fetch('server.php', {                      //! Відправка на сервер
-                method: "POST",
-                headers: {
-                    'Content-type': 'application/json'
-                },
-                body: JSON.stringify(object),
-            })
-            .then(data => data.text())                //! метод КОНВЕРТУЄМ ОТРИМАНІ ДАНІ для перегляду 
-            .then(data => {                           //! код у позитивному випадку
-                console.log(data);                           
-                showThanksModal(message.success);                   
-                statusMessage.remove();                // видаляєм повідомлення
-            }).catch(() => {                           //! код у випадку помилки
-                showThanksModal(message.failure);
-            }).finally(() => {                         //! код у будь-кому випадку
-                form.reset();                           // Очищаєм форму 
             });
+            const json = JSON.stringify(object);        
+            request.send(json);                        //! Відправляєм форму у форматі FD або JSON на сервер
 
+            request.addEventListener('load', () => {    //! відслідковуєм повну загрузку
+                if( request.status === 200) {
+                    console.log(request.response);                  // виводим в консоль дані
+                    // виводим користувачу що все ОК
+                    showThanksModal(message.success);
+                    form.reset();                                   // Очищаєм форму                    
+                    statusMessage.remove();                         // видаляєм повідомлення
+                    
+                } else {
+                    // виводим користувачу про помилку
+                    showThanksModal(message.failure);
+                }
+            });
         });
     }
 
