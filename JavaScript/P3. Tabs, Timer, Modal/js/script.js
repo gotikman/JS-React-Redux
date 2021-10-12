@@ -103,8 +103,7 @@ window.addEventListener('DOMContentLoaded', () => {
 //! MODAL WINDOW
 
     const modalButtons = document.querySelectorAll('[data-modal]'),
-          modalWindow = document.querySelector('.modal'),
-          modalClose = document.querySelector('[data-close]');
+          modalWindow = document.querySelector('.modal');
 
     function openModal () {                            // функція Відкриття модального
         modalWindow.classList.add('show');
@@ -125,12 +124,12 @@ window.addEventListener('DOMContentLoaded', () => {
     });
 
    
-    modalClose.addEventListener('click', () => {        // закриваєм модальне вікно по хрестику
-        closeModal();
-    });
+    // modalClose.addEventListener('click', () => {        // закриваєм модальне вікно по хрестику
+    //     closeModal();
+    // });
 
-    modalWindow.addEventListener('click', (evt) => {     // закриваєм модальне вікно по кліці за межами
-        if (evt.target === modalWindow) {           
+    modalWindow.addEventListener('click', (evt) => {     // закриваєм модальне вікно по кліці за межами і хрестик
+        if (evt.target === modalWindow || evt.target.getAttribute('data-close') == '') {           
             closeModal();
         }
     });
@@ -233,5 +232,87 @@ window.addEventListener('DOMContentLoaded', () => {
 
     ).render();             
 
+//! ВІДПРАВКА ДАНИХ З ФОРМ НА СЕРВЕР
+// 2 форми в нас і відповідно обробника тому обернемо у функцію яку будем викликати при відправки форми
+    
+    const forms = document.querySelectorAll('form');   // Отримуєм форму
+
+    const message = {                                    //! обєкт для виводу користувачу повідомлень
+        loading: 'img/form/spinner.svg',
+        success: 'Дякую! Незабаром ми з Вами звяжимось',
+        failure: 'Упс! Щось пішло не так...'
+    };
+
+    forms.forEach(item => {                         //! Вішаєм функцію на усі форми
+        postData(item);
+    });
+
+    function postData(form) {                        // функція що будем викликати при відправці форми
+        form.addEventListener('submit', (evt) => {   // вішаєм подію - відправка форми
+            evt.preventDefault();
+
+            const statusMessage = document.createElement('img');  //!змінна для повідомлень користувач
+            statusMessage.src = message.loading;                  // спінер
+            statusMessage.style.cssText = `
+                display: block;
+                margin: 0 auto;
+                `;
+                                
+            form.insertAdjacentElement('afterend', statusMessage); 
+          
+            const request = new XMLHttpRequest();                            //! створюєм обєкт запиту
+            request.open('POST', 'server.php');                              //! iніціалізація запиту
+           
+            request.setRequestHeader('Content-type', 'application/json');
+            const formData = new FormData(form);      //! створюєм обєкт FD в який буде приходити форма що передали
+
+            //! FormData конвертуєм в JSON
+            const object = {};    // Обєкт для заливки з FormData
+            formData.forEach(function(value, key) {
+                object[key] = value;
+            });
+            const json = JSON.stringify(object);        
+            request.send(json);                        //! Відправляєм форму у форматі FD або JSON на сервер
+
+            request.addEventListener('load', () => {    //! відслідковуєм повну загрузку
+                if( request.status === 200) {
+                    console.log(request.response);                  // виводим в консоль дані
+                    // виводим користувачу що все ОК
+                    showThanksModal(message.success);
+                    form.reset();                                   // Очищаєм форму                    
+                    statusMessage.remove();                         // видаляєм повідомлення
+                    
+                } else {
+                    // виводим користувачу про помилку
+                    showThanksModal(message.failure);
+                }
+            });
+        });
+    }
+
+    //! функція показу нового вікна оповіщення для користувача
+    function showThanksModal(message) {
+        const prevModalDialog = document.querySelector('.modal__dialog');  // використовуєм готове вікно
+
+        prevModalDialog.classList.add('hide');  // сховали стандартне вікно
+        openModal();                            // підвязуєм відкриття  нового вікна
+
+        const thanksModal = document.createElement('div');  // створюєм div
+        thanksModal.classList.add('modal__dialog');         // вішаєм стилі модального вікна
+        thanksModal.innerHTML = `
+            <div class="modal__content">
+                <div class="modal__close" data-close>×</div>
+                <div class="modal__title"> ${message} </div>
+            </div>
+        `;
+
+        document.querySelector('.modal').append(thanksModal);   // добавляєм створений елемент
+        setTimeout(() => {
+            thanksModal.remove();                        // видаляєм вспливаюче наше повідомленння
+            prevModalDialog.classList.add('show');
+            prevModalDialog.classList.remove('hide');
+            closeModal();
+        }, 4000);
+    }
 
 });
