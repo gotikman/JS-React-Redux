@@ -315,4 +315,9 @@ window.addEventListener('DOMContentLoaded', () => {
         }, 4000);
     }
 
+//! Настройка JSON-server
+    fetch('http://localhost:3000/menu')     // отримуєм доступ до бази
+        .then(data => data.json())          // перетворюю в звичайни обєкт JS, масив обєктів
+        .then(res => console.log(res)); 
+
 });

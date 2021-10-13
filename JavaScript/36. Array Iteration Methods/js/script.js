@@ -60,5 +60,3 @@ const newArr = Object.entries(obj)       //! перетврюєм в масив
 console.log(newArr);
 
 
-
-
