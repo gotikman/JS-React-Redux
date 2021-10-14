@@ -195,59 +195,88 @@ window.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    // const newCard = new MenuCard();     // стандартний спосіб створення
-    // div.render();
+     //! fetch \ Функція - отримуєм карточки з сервера бази даних db.json
+    //  const getResource = async (url) => {          
+    //     const res = await fetch(url);           // чекаєм і отримуєм promise дані по запросу
 
-    new MenuCard(                 //! спосіб створення обєкт. якщо нам потрібно викор. 1 раз
-        "img/tabs/vegy.jpg",
-        "vegy",
-        'Меню "Фитнес"',
-        'Меню "Фитнес" - это новый подход к приготовлению блюд: больше свежих овощей и фруктов. Продукт активных и здоровых людей. Это абсолютно новый продукт с оптимальной ценой и высоким качеством!',
-        9,
-        '.menu .container',
-        // 'menu__item',
-        // 'big'
+    //     // Обробка ситуації з помилкою в запросі fetch
+    //     if (!res.ok) {
+    //         throw new Error(`Could not fetch ${url}, status: ${res.status}`);
+    //     }
 
-    ).render();         
+    //     return await res.json();                // трансформ. в promise JS обєкт для подальшого викор.
+    // };
 
-    new MenuCard(                
-        "img/tabs/elite.jpg",
-        "elite",
-        'Меню “Премиум”',
-        'В меню “Премиум” мы используем не только красивый дизайн упаковки, но и качественное исполнение блюд. Красная рыба, морепродукты, фрукты - ресторанное меню без похода в ресторан! Меню “Премиум” - приходи, убедись',
-        15,
-        '.menu .container',
-        'menu__item'
+    //! fetch \ заливаємо карточки з сервера на сайт  
+    // getResource('http://localhost:3000/menu')   // запускаєм функцію з адресом наших карток
+    //     .then(data => {
+    //         data.forEach(({img, altimg, title, descr, price}) => {   // реструктуризуєм обєкт картки
+    //             new MenuCard(img, altimg, title, descr, price, '.menu .container').render();    
+    //         });
+    //     });
+       
+    //! AXIOS заливка карточки з сервера на сайт бібл.  
+      axios.get('http://localhost:3000/menu')
+        .then(data => {
+            data.data.forEach(({img, altimg, title, descr, price}) => {   // реструктуризуєм обєкт картки
+                new MenuCard(img, altimg, title, descr, price, '.menu .container').render();    
+            });
+        });
+    
+    //! спосіб 2 для заливки з бази якщо потрібно 1 раз залити і все без класів
+    // getResource('http://localhost:3000/menu')
+    //     .then(data => createCard(data));
 
-    ).render();        
+    // function createCard(data) {
+    //     data.forEach(({img, altimg, title, descr, price}) => {
+    //         const element = document.createElement('div');
 
-    new MenuCard(                 
-        "img/tabs/post.jpg",
-        "post",
-        'Меню "Постное"',
-        'Меню “Постное” - это тщательный подбор ингредиентов: полное отсутствие продуктов животного происхождения, молоко из миндаля, овса, кокоса или гречки, правильное количество белков за счет тофу и импортных вегетарианских стейков.',
-        12,
-        '.menu .container',
-        'menu__item'
+    //         element.classList.add('menu__item');
+    //         element.innerHTML = `
+    //             <img src=${img} alt=${altimg}>
+    //             <h3 class="menu__item-subtitle">${title}</h3>
+    //             <div class="menu__item-descr">${descr}</div>
+    //             <div class="menu__item-divider"></div>
+    //             <div class="menu__item-price">
+    //                 <div class="menu__item-cost">Цена:</div>
+    //                 <div class="menu__item-total"><span>${price}</span> грн/день</div>
+    //             </div>  
+    //         `;
 
-    ).render();             
+    //         document.querySelector('.menu .container').append(element);
+    //     });        
+    // }
+
 
 //! ВІДПРАВКА ДАНИХ З ФОРМ НА СЕРВЕР
 // 2 форми в нас і відповідно обробника тому обернемо у функцію яку будем викликати при відправки форми
     
     const forms = document.querySelectorAll('form');   // Отримуєм форму
 
-    const message = {                                    //! обєкт для виводу користувачу повідомлень
+    const message = {                               // обєкт для виводу користувачу повідомлень
         loading: 'img/form/spinner.svg',
         success: 'Дякую! Незабаром ми з Вами звяжимось',
         failure: 'Упс! Щось пішло не так...'
     };
 
-    forms.forEach(item => {                         //! Вішаєм функцію на усі форми
-        postData(item);
+    forms.forEach(item => {                       // Вішаєм функцію на усі форми
+        bindPostData(item);
     });
+    
+    //!Функція постим дані з форми
+    const postData = async (url, data) => {          
+        const res = await fetch(url, {          // чекаєм і отримуєм promise дані по запросу
+            method: "POST",
+            headers: {
+                'Content-type': 'application/json'  // настройки POST
+            },
+            body: data
+        }); 
+        
+        return await res.json();                // трансформ. в promise JS обєкт для подальшого викор.
+    };
 
-    function postData(form) {                        // функція що будем викликати при відправці форми
+    function bindPostData(form) {                        // функція що будем викликати при відправці форми
         form.addEventListener('submit', (evt) => {   // вішаєм подію - відправка форми
             evt.preventDefault();
 
@@ -266,17 +295,9 @@ window.addEventListener('DOMContentLoaded', () => {
             const object = {};    // Обєкт для заливки з FormData
             formData.forEach(function(value, key) {
                 object[key] = value;
-            });     
-            
+            });                 
 
-            fetch('server.php', {                      //! Відправка на сервер
-                method: "POST",
-                headers: {
-                    'Content-type': 'application/json'
-                },
-                body: JSON.stringify(object),
-            })
-            .then(data => data.text())                //! метод КОНВЕРТУЄМ ОТРИМАНІ ДАНІ для перегляду 
+            postData('http://localhost:3000/requests', JSON.stringify(object))
             .then(data => {                           //! код у позитивному випадку
                 console.log(data);                           
                 showThanksModal(message.success);                   
@@ -316,8 +337,135 @@ window.addEventListener('DOMContentLoaded', () => {
     }
 
 //! Настройка JSON-server
-    fetch('http://localhost:3000/menu')     // отримуєм доступ до бази
-        .then(data => data.json())          // перетворюю в звичайни обєкт JS, масив обєктів
-        .then(res => console.log(res)); 
+    // fetch('http://localhost:3000/menu')     // отримуєм доступ до бази
+    //     .then(data => data.json())          // перетворюю в звичайни обєкт JS, масив обєктів
+    //     .then(res => console.log(res)); 
+
+
+//! СЛАЙДЕР prof
+    const slides = document.querySelectorAll('.offer__slide'),
+          prev = document.querySelector('.offer__slider-prev'),
+          next = document.querySelector('.offer__slider-next'),
+          total = document.querySelector('#total'),
+          current = document.querySelector('#current'),
+          slidesWrapper = document.querySelector('.offer__slider-wrapper'),
+          slidesField = document.querySelector('.offer__slider-inner'),
+          width = window.getComputedStyle(slidesWrapper).width;
+    let slideIndex = 1;
+    let offset = 0;
+
+    if (slides.length < 10) {
+        total.textContent = `0${slides.length}`;
+        current.textContent = `0${slideIndex}`;
+    } else {
+        total.textContent = slides.length;
+        current.textContent = slideIndex;
+    }
+
+    slidesField.style.width = 100 * slides.length + '%';  // ширина обгортки * к-ть слайд \400%
+    slidesField.style.display = 'flex';                   // слайди в ряд
+    slidesField.style.transition = '0.5s all';            // перехід
+
+    slidesWrapper.style.overflow = 'hidden';              // обрізаєм інші слайди
+
+    slides.forEach(slide => {
+        slide.style.width = width;
+    });
+
+    next.addEventListener('click', () => {
+        console.log('click');
+        // width = '500px', треба чисте число, тому обрізаєм
+        if(offset == +width.slice(0, width.length-2) * (slides.length - 1)) { 
+            offset = 0;
+        } else {
+            offset += +width.slice(0, width.length-2);
+        }
+
+        slidesField.style.transform = `translateX(-${offset}px)`;
+
+        if (slideIndex == slides.length) {
+            slideIndex = 1;
+        } else {
+            slideIndex++;
+        }
+
+        if (slides.length < 10) {
+            current.textContent = `0${slideIndex}`;
+        } else {
+            current.textContent = slideIndex;
+        }
+
+    });
+
+    prev.addEventListener('click', () => {
+        console.log('click');
+        // width = '500px', треба чисте число, тому обрізаєм
+        if(offset == 0) { 
+            offset = +width.slice(0, width.length-2) * (slides.length - 1);            
+        } else {
+            offset -= +width.slice(0, width.length-2);
+        }
+
+        slidesField.style.transform = `translateX(-${offset}px)`;
+
+        if (slideIndex == 1) {
+            slideIndex = slides.length;
+        } else {
+            slideIndex--;
+        }
+
+        if (slides.length < 10) {
+            current.textContent = `0${slideIndex}`;
+        } else {
+            current.textContent = slideIndex;
+        }
+
+       
+    });
+
+
+    // showSlides(slideIndex);
+
+    // if (slides.length < 10) {
+    //     total.textContent = `0${slides.length}`;
+    // } else {
+    //     total.textContent = slides.length;
+    // }
+
+    // function showSlides(n){
+    //     if (n > slides.length) {
+    //         slideIndex = 1;
+    //     }
+
+    //     if (n < 1) {
+    //         slideIndex = slides.length;
+    //     }
+
+    //     slides.forEach( item => item.style.display = 'none');
+    
+    //     slides[slideIndex - 1].style.display = 'block';
+
+    //     if (slides.length < 10) {
+    //         current.textContent = `0${slideIndex}`;
+    //     } else {
+    //         current.textContent = slideIndex;
+    //     }
+    // }
+
+    // function plusSlides(n) {
+    //     showSlides(slideIndex += n);
+    // }
+
+    // prev.addEventListener('click', () => {
+    //     plusSlides(-1);
+    // });
+
+    // next.addEventListener('click', () => {
+    //     plusSlides(1);
+    // });
+
 
 });
+
+
+
