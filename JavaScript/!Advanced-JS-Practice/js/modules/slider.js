@@ -1,15 +1,18 @@
-function slider() {
-    
+
+function slider({ container, slide, nextArrow, prevArrow, totalCounter,
+    currentCounter, wrapper, field }) {
+
     //! СЛАЙДЕР prof
-    const slides = document.querySelectorAll('.offer__slide'),
-          slider = document.querySelector('.offer__slider'),
-          prev = document.querySelector('.offer__slider-prev'),
-          next = document.querySelector('.offer__slider-next'),
-          total = document.querySelector('#total'),
-          current = document.querySelector('#current'),
-          slidesWrapper = document.querySelector('.offer__slider-wrapper'),
-          slidesField = document.querySelector('.offer__slider-inner'),
-          width = window.getComputedStyle(slidesWrapper).width;
+    const slides = document.querySelectorAll(slide),
+        slider = document.querySelector(container),
+        prev = document.querySelector(prevArrow),
+        next = document.querySelector(nextArrow),
+        total = document.querySelector(totalCounter),
+        current = document.querySelector(currentCounter),
+        slidesWrapper = document.querySelector(wrapper),
+        width = window.getComputedStyle(slidesWrapper).width,
+        slidesField = document.querySelector(field);
+
     let slideIndex = 1;
     let offset = 0;
 
@@ -49,13 +52,13 @@ function slider() {
     slider.style.position = 'relative';
 
     const indicators = document.createElement('ol'),
-          dots = [];
+        dots = [];
 
     indicators.classList.add('carousel-indicators');
 
     slider.append(indicators);
 
-    for (let i = 0; i< slides.length; i++) {
+    for (let i = 0; i < slides.length; i++) {
         const dot = document.createElement('li');
         dot.setAttribute('data-slide-to', i + 1);
         dot.classList.add('dot');
@@ -74,7 +77,7 @@ function slider() {
 
     next.addEventListener('click', () => {
         // width = '500px', треба чисте число, тому обрізаєм
-        if(offset == deleteNotDigits(width) * (slides.length - 1)) { 
+        if (offset == deleteNotDigits(width) * (slides.length - 1)) {
             offset = 0;
         } else {
             offset += deleteNotDigits(width);
@@ -94,8 +97,8 @@ function slider() {
 
     prev.addEventListener('click', () => {
         // width = '500px', треба чисте число, тому обрізаєм
-        if(offset == 0) { 
-            offset = deleteNotDigits(width) * (slides.length - 1);            
+        if (offset == 0) {
+            offset = deleteNotDigits(width) * (slides.length - 1);
         } else {
             offset -= deleteNotDigits(width);
         }
@@ -119,7 +122,7 @@ function slider() {
             const slideTo = e.target.getAttribute('data-slide-to');
 
             slideIndex = slideTo;
-            offset = deleteNotDigits(width) * (slideTo- 1);  
+            offset = deleteNotDigits(width) * (slideTo - 1);
 
             slidesField.style.transform = `translateX(-${offset}px)`;
 
@@ -130,4 +133,5 @@ function slider() {
 
 }
 
-module.exports = slider;
+// module.exports = slider; // старий спосіб експорту
+export default slider;

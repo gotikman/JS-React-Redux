@@ -85,7 +85,6 @@ function calc() {
     //! функція для полів вводу, отримуєм дані
     function getDynamicInformation(selector) {
         const input = document.querySelector(selector);
-        console.log(selector);
 
         input.addEventListener('input', () => {
 
@@ -118,4 +117,5 @@ function calc() {
     getDynamicInformation('#age');
 }
 
-module.exports = calc;
+// module.exports = calc;   // старий спосіб експорту
+export default calc;

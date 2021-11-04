@@ -1,8 +1,12 @@
-function forms() {
+
+import { openModal, closeModal } from './modal';
+import { postData } from '../services/services';
+
+function forms(formSelector, modalTimerId) {
     //! ВІДПРАВКА ДАНИХ З ФОРМ НА СЕРВЕР
-// 2 форми в нас і відповідно обробника тому обернемо у функцію яку будем викликати при відправки форми
-    
-    const forms = document.querySelectorAll('form');   // Отримуєм форму
+    // 2 форми в нас і відповідно обробника тому обернемо у функцію яку будем викликати при відправки форми
+
+    const forms = document.querySelectorAll(formSelector);   // Отримуєм форму
 
     const message = {                               // обєкт для виводу користувачу повідомлень
         loading: 'img/form/spinner.svg',
@@ -13,19 +17,7 @@ function forms() {
     forms.forEach(item => {                       // Вішаєм функцію на усі форми
         bindPostData(item);
     });
-    
-    //!Функція постим дані з форми
-    const postData = async (url, data) => {          
-        const res = await fetch(url, {          // чекаєм і отримуєм promise дані по запросу
-            method: "POST",
-            headers: {
-                'Content-type': 'application/json'  // настройки POST
-            },
-            body: data
-        }); 
-        
-        return await res.json();                // трансформ. в promise JS обєкт для подальшого викор.
-    };
+
 
     function bindPostData(form) {                  // функція що будем викликати при відправці форми
         form.addEventListener('submit', (evt) => {   // вішаєм подію - відправка форми
@@ -37,27 +29,31 @@ function forms() {
                 display: block;
                 margin: 0 auto;
                 `;
-                                
-            form.insertAdjacentElement('afterend', statusMessage);       
-    
-            const formData = new FormData(form);      //! створюєм обєкт FD в який буде приходити форма що передали
+
+            form.insertAdjacentElement('afterend', statusMessage);
+
+            //! створюєм обєкт FD в який буде приходити форма що передали
+            const formData = new FormData(form);
 
             //! FormData конвертуєм в JSON
             const object = {};    // Обєкт для заливки з FormData
-            formData.forEach(function(value, key) {
+            formData.forEach(function (value, key) {
                 object[key] = value;
-            });                 
+            });
+
+            //!альтернативний варіант FormData --> JSON
+            // const json = JSON.stringify(Object.fromEntries(formData.entries()));
 
             postData('http://localhost:3000/requests', JSON.stringify(object))
-            .then(data => {                           //! код у позитивному випадку
-                console.log(data);                           
-                showThanksModal(message.success);                   
-                statusMessage.remove();                // видаляєм повідомлення
-            }).catch(() => {                           //! код у випадку помилки
-                showThanksModal(message.failure);
-            }).finally(() => {                         //! код у будь-кому випадку
-                form.reset();                           // Очищаєм форму 
-            });
+                .then(data => {                           //! код у позитивному випадку
+                    console.log(data);
+                    showThanksModal(message.success);
+                    statusMessage.remove();                // видаляєм повідомлення
+                }).catch(() => {                           //! код у випадку помилки
+                    showThanksModal(message.failure);
+                }).finally(() => {                         //! код у будь-кому випадку
+                    form.reset();                           // Очищаєм форму 
+                });
 
         });
     }
@@ -67,7 +63,7 @@ function forms() {
         const prevModalDialog = document.querySelector('.modal__dialog');  // використовуєм готове вікно
 
         prevModalDialog.classList.add('hide');  // сховали стандартне вікно
-        openModal();                            // підвязуєм відкриття  нового вікна
+        openModal('.modal', modalTimerId);                           // підвязуєм відкриття  нового вікна
 
         const thanksModal = document.createElement('div');  // створюєм div
         thanksModal.classList.add('modal__dialog');         // вішаєм стилі модального вікна
@@ -83,10 +79,10 @@ function forms() {
             thanksModal.remove();                        // видаляєм вспливаюче наше повідомленння
             prevModalDialog.classList.add('show');
             prevModalDialog.classList.remove('hide');
-            closeModal();
+            closeModal('.modal');
         }, 4000);
     }
-
 }
 
-module.exports = forms;
+// module.exports = forms;  // старий спосіб експорту
+export default forms;

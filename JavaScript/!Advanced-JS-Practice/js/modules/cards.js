@@ -1,3 +1,6 @@
+
+import { getResource } from '../services/services';
+
 function cards() {
     //! CLASS для створення нових карточок 
 
@@ -42,17 +45,7 @@ function cards() {
         }
     }
 
-    //! fetch \ Функція - отримуєм карточки з сервера бази даних db.json
-    const getResource = async (url) => {
-        const res = await fetch(url);           // чекаєм і отримуєм promise дані по запросу
 
-        // Обробка ситуації з помилкою в запросі fetch
-        if (!res.ok) {
-            throw new Error(`Could not fetch ${url}, status: ${res.status}`);
-        }
-
-        return await res.json();                // трансформ. в promise JS обєкт для подальшого викор.
-    };
 
     //! fetch \ заливаємо карточки з сервера на сайт  
     getResource('http://localhost:3000/menu')   // запускаєм функцію з адресом наших карток
@@ -72,4 +65,5 @@ function cards() {
 
 }
 
-module.exports = cards;
+// module.exports = cards;   // старий спосіб експорту
+export default cards;

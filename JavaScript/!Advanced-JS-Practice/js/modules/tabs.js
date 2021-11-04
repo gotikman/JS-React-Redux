@@ -1,10 +1,11 @@
-function tabs() {
+
+function tabs(tabsSelector, tabsContentSelector, tabsParentSelector, activeClass) {
     //! TABS
 
-    const tabs = document.querySelectorAll('.tabheader__item'),
-          tabsContent = document.querySelectorAll('.tabcontent'),
-          tabsParent = document.querySelector('.tabheader__items'); // повішаєм делегування
-          
+    const tabs = document.querySelectorAll(tabsSelector),
+        tabsContent = document.querySelectorAll(tabsContentSelector),
+        tabsParent = document.querySelector(tabsParentSelector); // повішаєм делегування
+
     //! ховаєм, обнуляєм усі таби
     function hideTabContent() {
         tabsContent.forEach(item => {
@@ -14,7 +15,7 @@ function tabs() {
         });
 
         tabs.forEach(item => {
-            item.classList.remove('tabheader__item_active');
+            item.classList.remove(activeClass);
         });
     }
 
@@ -23,17 +24,17 @@ function tabs() {
         // tabsContent[i].style.display = 'block';
         tabsContent[i].classList.add('show', 'fade');
         tabsContent[i].classList.remove('hide');
-        tabs[i].classList.add('tabheader__item_active');
+        tabs[i].classList.add(activeClass);
     }
 
     hideTabContent();
     showTabContent();
 
     //! вішаєм делегування подій
-    tabsParent.addEventListener('click', (evt) => {  
+    tabsParent.addEventListener('click', (evt) => {
         const target = evt.target;       // створюєм щоб легше юзати надалі
 
-        if(target && target.classList.contains('tabheader__item')) {  //перевіряєм кнопку
+        if (target && target.classList.contains(tabsSelector.slice(1))) {  //перевіряєм кнопку, вирізаєм "."
             tabs.forEach((item, i) => {    // перебираєм і шукаєм номер що клацнули
                 if (target == item) {  //перевірка табнутого з перебираємим
                     hideTabContent();
@@ -45,4 +46,5 @@ function tabs() {
 }
 
 //! CommonJS, експортуєм функцію
-module.exports = tabs;
+// module.exports = tabs;   // старий спосіб експорту
+export default tabs;
