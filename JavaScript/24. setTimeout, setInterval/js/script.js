@@ -77,7 +77,7 @@ function myAnimation() {
     let pos = 0;
 
     const id = setInterval(frame, 10);             //? запускаєм анімацію    
-    
+
     function frame() {
         if (pos == 300) {
             clearInterval(id);                     //? відміняєм повторення по закінченню
@@ -86,7 +86,7 @@ function myAnimation() {
             elem.style.top = pos + "px";
             elem.style.left = pos + "px";
         }
-    }    
+    }
 }
 
 btn.addEventListener('click', myAnimation);       //? тригер запуску анімації
