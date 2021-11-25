@@ -62,29 +62,46 @@ class StatComp extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            yers: 27
+            yers: 27,                    //! state оголошення
+            position: ""
         }
     }
 
+    //! метод-класа збільшення state
     nextYers = () => {
-        this.setState(state => ({
-            yers: state.yers + 1
+        this.setState(state => ({        //! state 1-й аргумент
+            yers: state.yers + 1         //! state зміна +1
         }))
     }
 
+    //! метод-класа обробника події
+    commitInputChanges = (e, data) => {
+        console.log(data);
+        this.setState({
+            position: e.target.value
+        })
+    }
+
     render() {
-        const { name, surname, link } = this.props;
+        const { name, surname, link } = this.props;    //! Деструк. витягуєм для роботи
+        const { position, yers } = this.state;           //! Деструк. витягуєм для роботи
+
         return (
             <div>
                 <button onClick={this.nextYers}>+++</button>
-                <h1>My name is {name}, surname - {surname}, age - {this.state.yers}</h1>
+                <h1>My name is {name},
+                    surname - {surname},
+                    age - {yers},
+                    position - {position}</h1>
                 <a href={link}>Силка</a>
+                <form>
+                    <span>Введіть посаду </span>
+                    <input type="text" onChange={(e) => this.commitInputChanges(e, 'some data')} />
+                </form>
             </div >
         )
     }
-
 }
-
 
 //! Основний компонент що передається в index.js
 function App() {
@@ -100,13 +117,10 @@ function App() {
             <StatComp name="Roman" surname="Smith" link="www.google.com" />
             <StatComp name="Roman" surname="Smith" link="www.google.com" />
 
-
         </div>
     );
 }
 
 // export { Header };
 export default App;
-
-
 
