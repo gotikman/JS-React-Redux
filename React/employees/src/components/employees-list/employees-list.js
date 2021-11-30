@@ -2,19 +2,21 @@ import EmployeesListItem from '../employees-list-item/employees-list-item';
 
 import './employees-list.css';
 
-const EmployeesList = ({ data }) => {
+const EmployeesList = ({ data, onDelete }) => {
     //!Перебираєм обєк елементів з бази
     const elements = data.map(item => {
         const { id, ...itemProps } = item;    //! рестр. розбиваэм по залишковому принципу
         return (
-            <EmployeesListItem key={id} {...itemProps} />  //! розгортаєм обєкт props
+            <EmployeesListItem
+                key={id}
+                {...itemProps}                       //! розгортаєм обєкт props
+                onDelete={() => onDelete(id)} />
         )
     })
 
 
     return (
         <ul className="app-list list-group">
-
             {elements}
         </ul>
     )
