@@ -20,12 +20,23 @@ class EmployeesAddForm extends Component {
 
     onSubmit = (e) => {
         e.preventDefault();
-        this.props.onAdd(this.state.name, this.state.salary);
-        this.setState({
-            name: '',
-            salary: ''
-        })
+        if (this.state.name.length >= 3 && this.state.salary) {
+            this.props.onAdd(this.state.name, this.state.salary);
+            this.setState({
+                name: '',
+                salary: ''
+            })
+        }
     }
+    // onSubmit = (e) => {
+    //     e.preventDefault();
+    //     if (this.state.name.length < 3 || !this.state.salary) return;
+    //     this.props.onAdd(this.state.name, this.state.salary);
+    //     this.setState({
+    //         name: '',
+    //         salary: ''
+    //     })
+    // }
 
     render() {
         const { name, salary } = this.state;
@@ -39,12 +50,15 @@ class EmployeesAddForm extends Component {
                     onSubmit={this.onSubmit}>
 
                     <input type="text"
+                        minLength="1" maxLength="30"
+                        pattern="[A-Za-z]{2,} [A-Za-z]{1,}"
                         className="form-control new-post-label"
                         placeholder="Как его зовут?"
                         name="name"
                         value={name}
                         onChange={this.onValueChange} />
                     <input type="number"
+                        min="100" max="5000"
                         className="form-control new-post-label"
                         placeholder="З/П в $?"
                         name="salary"

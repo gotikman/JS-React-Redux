@@ -40,23 +40,6 @@ function Btn() {
     return <button>{logged ? 'Enter' : text}</button>       //! тернарний оператор If
 }
 
-//? Властивості компонентів props
-// function WhoAmI(props) {
-//     return (
-//         <div>
-//             <h1>My name is {props.name}, surname - {props.surname} </h1>
-//             <a href={props.link}>Силка</a>
-//         </div>
-//     )
-// }
-// function PropsDestr({ name, surname, link }) {
-//     return (
-//         <div>
-//             <h1>My name is {name()}, surname - {surname.call} </h1>
-//             <a href={link}>Силка</a>
-//         </div>
-//     )
-// }
 //!Класовий компонент з станом State!
 class StatComp extends Component {
     constructor(props) {
@@ -75,8 +58,7 @@ class StatComp extends Component {
     }
 
     //! метод-класа обробника події
-    commitInputChanges = (e, data) => {
-        console.log(data);
+    commitInputChanges = (e) => {
         this.setState({
             position: e.target.value
         })
@@ -87,7 +69,7 @@ class StatComp extends Component {
         const { position, yers } = this.state;           //! Деструк. витягуєм для роботи
 
         return (
-            <div>
+            <>
                 <button onClick={this.nextYers}>+++</button>
                 <h1>My name is {name},
                     surname - {surname},
@@ -96,9 +78,9 @@ class StatComp extends Component {
                 <a href={link}>Силка</a>
                 <form>
                     <span>Введіть посаду </span>
-                    <input type="text" onChange={(e) => this.commitInputChanges(e, 'some data')} />
+                    <input type="text" onChange={(e) => this.commitInputChanges(e)} />
                 </form>
-            </div >
+            </>
         )
     }
 }
