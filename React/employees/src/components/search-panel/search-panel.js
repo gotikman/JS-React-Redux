@@ -9,7 +9,7 @@ class SearchPanel extends Component {
         }
     }
 
-    onUpdateSearchLoc = (e) => {
+    onUpdateSearchLocal = (e) => {
         const term = e.target.value;
         this.setState({ term })
         this.props.onUpdateSearch(term);                   //! Передаєм вище значення term
@@ -22,7 +22,7 @@ class SearchPanel extends Component {
                 className="form-control search-input"
                 placeholder="Знайти працівника"
                 value={this.state.term}                       //! управляємий компонент
-                onChange={this.onUpdateSearchLoc}
+                onChange={this.onUpdateSearchLocal}
             />
 
         )

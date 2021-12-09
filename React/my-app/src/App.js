@@ -1,29 +1,20 @@
 // import logo from './logo.svg';
 // import React from 'react';
 import { Component } from 'react';
+import styled from 'styled-components';
+
 import './App.css';
 
 const Header = () => {
     return <h2>Hello world!</h2>
 }
 
-// const Field = () => {                //!функціональний компонент
-//     const holder = 'Enter here'
-//     const styleField = {
-//         width: '300px'
-//     }
-//     return <input
-//         placeholder={holder}
-//         type="text"
-//         style={styleField} />
-// }
-
 class Field extends Component {           //! класовий компонент
     render() {
         const holder = 'Enter here'
         const styleField = {
             width: '300px',
-            backgroundColor: 'yellow'
+            backgroundColor: 'yellow',
         };
 
         return <input
@@ -40,7 +31,39 @@ function Btn() {
     return <button>{logged ? 'Enter' : text}</button>       //! тернарний оператор If
 }
 
+
+//! Описуєм стилі Styled Components
+const EmpItem = styled.div`    
+    padding: 20px;
+    margin-bottom: 15px;
+    margin-top: 15px;
+    border-radius: 5px;
+    box-shadow: 5px 5px 10px rgb(0 0 0 / 50%);
+    a {
+        display: block;
+        margin: 10px 0 10px 0;
+        color: ${props => props.active ? 'orange' : 'Black'};
+    }
+    input {
+        border: 3px solid grey;
+    }
+`;
+
+const HeaderStyle = styled.h2`
+    font-size: 22px;
+`;
+
+export const Button = styled.button`
+    display: block;
+    padding: 5px 15px;
+    background-color: gold;
+    border: 1px solid rgb(0 0 0 /20%);
+    box-shadow: 5px 5px 10px rgb(0 0 0 /20%);
+    text-align: center;
+    `
+
 //!Класовий компонент з станом State!
+
 class StatComp extends Component {
     constructor(props) {
         super(props);
@@ -53,6 +76,7 @@ class StatComp extends Component {
     //! метод-класа збільшення state
     nextYers = () => {
         this.setState(state => ({        //! state 1-й аргумент
+
             yers: state.yers + 1         //! state зміна +1
         }))
     }
@@ -65,41 +89,45 @@ class StatComp extends Component {
     }
 
     render() {
-        const { name, surname, link } = this.props;    //! Деструк. витягуєм для роботи
+        const { name, surname, link } = this.props;      //! Деструк. витягуєм для роботи
         const { position, yers } = this.state;           //! Деструк. витягуєм для роботи
 
         return (
-            <>
-                <button onClick={this.nextYers}>+++</button>
-                <h1>My name is {name},
+            <EmpItem active>
+                <Button onClick={this.nextYers}>+++</Button>
+                <HeaderStyle>My name is {name},
                     surname - {surname},
                     age - {yers},
-                    position - {position}</h1>
-                <a href={link}>Силка</a>
+                    position - {position}</HeaderStyle>
+                <a href={link}>Силка </a>
                 <form>
                     <span>Введіть посаду </span>
                     <input type="text" onChange={(e) => this.commitInputChanges(e)} />
                 </form>
-            </>
+            </EmpItem>
         )
     }
 }
 
+//! Описуєм стилі Styled Components
+const Wrapper = styled.div`
+    width: 1000px;
+    margin: 80px auto 0 auto;
+    text-align: center;
+`;
+
 //! Основний компонент що передається в index.js
 function App() {
     return (
-        <div className="App">
+        <Wrapper>
             <Header />
             <Field />
             <Btn />
 
-            {/* <WhoAmI name="Roman" surname="Smith" link="www.google.com" /> */}
-            {/* <PropsDestr name={() => { return 'John' }} surname={{ call: "Olga" }} link="www" /> */}
-
             <StatComp name="Roman" surname="Smith" link="www.google.com" />
             <StatComp name="Roman" surname="Smith" link="www.google.com" />
 
-        </div>
+        </Wrapper>
     );
 }
 
