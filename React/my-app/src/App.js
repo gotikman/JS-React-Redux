@@ -101,7 +101,7 @@ class StatComp extends Component {
                     position - {position}</HeaderStyle>
                 <a href={link}>Силка </a>
                 <form>
-                    <span>Введіть посаду </span>
+                    <span> fdsgdfdf Введіть посаду</span>
                     <input type="text" onChange={(e) => this.commitInputChanges(e)} />
                 </form>
             </EmpItem>
@@ -116,7 +116,7 @@ const Wrapper = styled.div`
     text-align: center;
 `;
 
-//! Основний компонент що передається в index.js
+//! Основний компонент що передається в index.js 
 function App() {
     return (
         <Wrapper>
