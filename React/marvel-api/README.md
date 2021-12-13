@@ -1,3 +1,13 @@
+
+#### Провірка API
+const marvelServise = new MarvelService();  //! створюєм дублікат класу для 
+marvelServise.getAllCharacters().then(res => res.data.results.forEach(item => console.log(item.name))); 
+http://prntscr.com/22qy9a6
+
+
+
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
