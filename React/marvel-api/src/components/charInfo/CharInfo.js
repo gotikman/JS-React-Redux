@@ -5,14 +5,14 @@ const CharInfo = () => {
     return (
         <div className="char__info">
             <div className="char__basics">
-                <img src={thor} alt="abyss"/>
+                <img src={thor} alt="abyss" />
                 <div>
                     <div className="char__info-name">thor</div>
                     <div className="char__btns">
-                        <a href="#" className="button button__main">
+                        <a href="#temp" className="button button__main">
                             <div className="inner">homepage</div>
                         </a>
-                        <a href="#" className="button button__secondary">
+                        <a href="#temp" className="button button__secondary">
                             <div className="inner">Wiki</div>
                         </a>
                     </div>
