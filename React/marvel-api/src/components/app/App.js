@@ -13,7 +13,6 @@ class App extends Component {
 
     toggleRandomChar = () => {
         this.setState(({ showRandomChar }) => {
-            console.log('click');
             return {
                 showRandomChar: !showRandomChar
             }
