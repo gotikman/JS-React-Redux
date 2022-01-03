@@ -6,16 +6,18 @@ import CharInfo from "../charInfo/CharInfo";
 
 import decoration from '../../resources/img/vision.png';
 
+
+
 class App extends Component {
+
     state = {
-        showRandomChar: true
+        selectedChar: null,          //! стейт для підйому id
+
     }
 
-    toggleRandomChar = () => {
-        this.setState(({ showRandomChar }) => {
-            return {
-                showRandomChar: !showRandomChar
-            }
+    onCharSelected = (id) => {         //! підйом id вибраного перса з CharList
+        this.setState({
+            selectedChar: id
         })
     }
 
@@ -24,12 +26,10 @@ class App extends Component {
             <div className="app">
                 <AppHeader />
                 <main>
-                    {this.state.showRandomChar ? <RandomChar /> : null}
-
-                    <button onClick={this.toggleRandomChar}>click</button>
+                    <RandomChar />
                     <div className="char__content">
-                        <CharList />
-                        <CharInfo />
+                        <CharList onCharSelected={this.onCharSelected} />
+                        <CharInfo charId={this.state.selectedChar} />
                     </div>
                     <img className="bg-decoration" src={decoration} alt="vision" />
                 </main>
@@ -38,20 +38,39 @@ class App extends Component {
     }
 }
 
-// const App = () => {
-//     return (
-//         <div className="app">
-//             <AppHeader />
-//             <main>
-//                 <RandomChar />
-//                 <div className="char__content">
-//                     <CharList />
-//                     <CharInfo />
-//                 </div>
-//                 <img className="bg-decoration" src={decoration} alt="vision" />
-//             </main>
-//         </div>
-//     )
+
+
+//! кнопка з вкл/викл компонента
+// class App extends Component {
+//     state = {
+//         showRandomChar: true
+//     }
+
+//     toggleRandomChar = () => {
+//         this.setState(({ showRandomChar }) => {
+//             return {
+//                 showRandomChar: !showRandomChar
+//             }
+//         })
+//     }
+
+//     render() {
+//         return (
+//             <div className="app">
+//                 <AppHeader />
+//                 <main>
+//                     {this.state.showRandomChar ? <RandomChar /> : null}
+
+//                     <button onClick={this.toggleRandomChar}>click</button>
+//                     <div className="char__content">
+//                         <CharList />
+//                         <CharInfo />
+//                     </div>
+//                     <img className="bg-decoration" src={decoration} alt="vision" />
+//                 </main>
+//             </div>
+//         )
+//     }
 // }
 
 export default App;

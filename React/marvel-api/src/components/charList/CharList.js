@@ -41,11 +41,10 @@ class CharList extends Component {
             const checkCover = item.thumbnail.search('not_available') > 0 ? { objectFit: 'unset' } : null;
             return (
                 <li key={item.key}
+                    onClick={() => this.props.onCharSelected(item.key)}
                     className="char__item ">
 
-                    <img src={item.thumbnail}
-                        alt="abyss"
-                        style={checkCover} />
+                    <img src={item.thumbnail} alt="abyss" style={checkCover} />
                     <div className="char__name">{item.name}</div>
                 </li>
             )
