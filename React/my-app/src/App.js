@@ -101,7 +101,7 @@ class StatComp extends Component {
                     position - {position}</HeaderStyle>
                 <a href={link}>Силка </a>
                 <form>
-                    <span> fdsgdfdf Введіть посаду</span>
+                    <span> Введіть посаду</span>
                     <input type="text" onChange={(e) => this.commitInputChanges(e)} />
                 </form>
             </EmpItem>
@@ -125,7 +125,7 @@ function App() {
             <Btn />
 
             <StatComp name="Roman" surname="Smith" link="www.google.com" />
-            <StatComp name="Roman" surname="Smith" link="www.google.com" />
+            <StatComp name="Igor" surname="Pavelko" link="www.google.com" />
 
         </Wrapper>
     );

@@ -24,7 +24,6 @@ class RandomChar extends Component {
     // компоненти життєвого циклу
     componentDidMount() {
         this.updateChar();                                     //1 ініц. при 1 загруз           
-        // this.timerId = setInterval(this.updateChar, 3000);
         console.log('+mount');
     }
 
@@ -36,14 +35,14 @@ class RandomChar extends Component {
         console.log('-unmount');
     }
 
-    onCharLoaded = (char) => {
+    onCharLoaded = (char) => {          //! відповідає за кінцевий результат
         this.setState({
             char: char,
             loading: false
         })
     }
 
-    onCharLoading = () => {
+    onCharLoading = () => {          //! відповідає за проміжний результат
         this.setState({
             loading: true
         })
@@ -58,7 +57,7 @@ class RandomChar extends Component {
 
     updateChar = () => {
         const id = Math.floor(Math.random() * (1011400 - 1011000) + 1011000);
-        this.onCharLoading();
+        this.onCharLoading();                  //!Спінер перед запросом та загрузкою перса.
         this.marvelServise
             .getCharacter(id)
             .then(this.onCharLoaded)
