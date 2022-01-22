@@ -1,9 +1,10 @@
-## JS-React-Redux
+## JS-React-Redux Navigation
 
 ### JavaScript
-+ Modules   https://github.com/gotikman/JS-React-Redux/tree/master/JavaScript/!Advanced-JS-Practice/js/modules
-+ Services  https://github.com/gotikman/JS-React-Redux/tree/master/JavaScript/!Advanced-JS-Practice/js/services
-+ Materials https://github.com/gotikman/JS-React-Redux/tree/master/JavaScript
++ All materials https://github.com/gotikman/JS-React-Redux/tree/master/JavaScript
++ Modules       https://github.com/gotikman/JS-React-Redux/tree/master/JavaScript/!Advanced-JS-Practice/js/modules
++ Services      https://github.com/gotikman/JS-React-Redux/tree/master/JavaScript/!Advanced-JS-Practice/js/services
+ 
 
 ### React
 + Projects  https://github.com/gotikman/JS-React-Redux/tree/master/React
