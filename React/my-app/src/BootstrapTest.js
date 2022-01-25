@@ -1,6 +1,22 @@
-import { Container, Row, Col, Carousel, Form, Button } from 'react-bootstrap';
+import { Container, Row, Col, Form, Button, Carousel } from 'react-bootstrap';
 
-const BootstrapTest = () => {
+//* Компонент приймає 2 пропса що передаются як додаткові компоненти
+const BootstrapTest = (props) => {
+    return (
+        <Container className="mt-5 mb-5">
+            <Row>
+                <Col>
+                    {props.left}
+                </Col>
+                <Col>
+                    {props.right}
+                </Col>
+            </Row>
+        </Container>
+    )
+}
+
+const BootstrapFormSlider = () => {
     return (
         <Container className="mt-5 mb-5">
             <Row>
@@ -40,18 +56,7 @@ const BootstrapTest = () => {
                             </Carousel.Caption>
                         </Carousel.Item>
                         <Carousel.Item>
-                            <img
-                                className="d-block w-100"
-                                src="https://i.pinimg.com/736x/58/bd/4f/58bd4fc9ebfccc1f2de419529bbf1a12.jpg"
-                                alt="Second slide"
-                            />
 
-                            <Carousel.Caption>
-                                <h3>Second slide label</h3>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                            </Carousel.Caption>
-                        </Carousel.Item>
-                        <Carousel.Item>
                             <img
                                 className="d-block w-100"
                                 src="https://i.pinimg.com/originals/4f/2d/e6/4f2de68d3d767bc1b1ca97031181f0a6.jpg"
@@ -70,4 +75,5 @@ const BootstrapTest = () => {
     )
 }
 
+export { BootstrapFormSlider };
 export default BootstrapTest;
