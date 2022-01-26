@@ -1,18 +1,15 @@
 // import logo from './logo.svg';
 
-// import { cloneElement } from 'react';
-// import { Children } from 'react';
 import React, { Component } from 'react';
 import styled from 'styled-components';
 // import BootstrapTest from './BootstrapTest';
 import BootstrapTest from './BootstrapTest';
+import Form from './Ref';
 
 import './App.css';
 
 // _________________________________________________
-const Header = () => {
-    return <h2>Hello world!</h2>
-}
+
 class Field extends Component {
     render() {
         const holder = 'Enter here'
@@ -137,15 +134,74 @@ const DynamicCreating = (props) => {
         </div>
     )
 }
+// _________________________________________________
+
+//! Компонент композиція, створений з іншого і трохи модифікований, по типу наслідування
+//? Композиція(спеціалізація)- це коли ми обєднюєм компоненти та надаєм їм нових властивостей по типу наслідування
+
+const HelloCreating = () => {
+    return (
+        <div style={{ 'width': '600px', 'margin': '0 auto' }}>
+            <DynamicCreating color={'primary'}>
+                <h2>Hello everyone</h2>
+            </DynamicCreating>
+        </div>
+    )
+}
+
+// _________________________________________________
+
+//! Remder-props патерн !!!!
+//* 2 Окремих специфічних компонента можна звязати між собою щоб 1 працював в середині 2
+
+const Message = (props) => {              //? метод який передаєтся в інший для рендера
+    return (
+        <h2>The counter is {props.counter}</h2>
+    )
+}
+
+class Counter extends Component {       //? метод який приймає props що буде функцією з іншим методом
+    state = {
+        counter: 0
+    }
+
+    changeCounter = () => {
+        this.setState(({ counter }) => ({
+            counter: counter + 1
+        }))
+    }
+
+    render() {
+        return (
+            <>
+                <button
+                    className={'btn btn-primary mt-3'}
+                    onClick={this.changeCounter}>
+                    Click me
+                </button>
+                {this.props.render(this.state.counter)}
+            </>
+        );
+    }
+}
+
+// _________________________________________________
 
 //! Основний компонент що передається в index.js 
 function App() {
     return (
         <Wrapper>
-            <Header />
+            <Form />
+
+            <Counter render={counter => (
+                <Message counter={counter} />
+            )} />
+
             <Field />
             <Btn />
 
+
+            <HelloCreating />
             <BootstrapTest
                 left={
                     <DynamicCreating color={'primary'}>
