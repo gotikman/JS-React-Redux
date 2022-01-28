@@ -5,6 +5,7 @@ import styled from 'styled-components';
 // import BootstrapTest from './BootstrapTest';
 import BootstrapTest from './BootstrapTest';
 import Form from './Ref';
+import AppPortals from './Portals';
 
 import './App.css';
 
@@ -191,6 +192,8 @@ class Counter extends Component {       //? метод який приймає p
 function App() {
     return (
         <Wrapper>
+            <AppPortals />
+
             <Form />
 
             <Counter render={counter => (
