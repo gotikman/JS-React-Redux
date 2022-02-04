@@ -2,10 +2,10 @@
 
 import React, { Component } from 'react';
 import styled from 'styled-components';
-// import BootstrapTest from './BootstrapTest';
 import BootstrapTest from './BootstrapTest';
 import Form from './Ref';
 import AppPortals from './Portals';
+import Slider from './SliderHookState';
 
 import './App.css';
 
@@ -191,7 +191,10 @@ class Counter extends Component {       //? метод який приймає p
 //! Основний компонент що передається в index.js 
 function App() {
     return (
+
         <Wrapper>
+            <Slider />
+
             <AppPortals />
 
             <Form />

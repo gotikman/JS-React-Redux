@@ -62,7 +62,7 @@ const Portal = (props) => {
     return ReactDOM.createPortal(props.children, node)
 }
 
-//? компонент що потрібно відрендирити в іншому, буде дочерним в Portal
+//? компонент що потрібно відрендирити в іншому, буде дочірнім в Portal
 const Msg = () => {
     return (
         <div
