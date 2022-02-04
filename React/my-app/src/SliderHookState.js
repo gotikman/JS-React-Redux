@@ -1,4 +1,4 @@
-import { Component, useState } from 'react';
+import { Component, useState, useEffect } from 'react';
 import { Container } from 'react-bootstrap';
 // import './App.css';
 
@@ -10,10 +10,19 @@ import { Container } from 'react-bootstrap';
 //         super(props);
 //         this.state = {
 //             autoplay: false,
-//             slide: 0
+//             slide: 2
 //         }
 //     }
+//     // ______________________________
+//     componentDidMount() {
+//         document.title = `Slide: ${this.state.slide}`
+//     }
 
+//     componentDidUpdate() {
+//         document.title = `Slide: ${this.state.slide}`
+//     }
+
+//     // ______________________________
 //     changeSlide = (i) => {
 //         this.setState(({ slide }) => ({
 //             slide: slide + i
@@ -52,13 +61,22 @@ import { Container } from 'react-bootstrap';
 //! Функціональний компонент з використанням useState HOOKS
 const Slider = (props) => {
 
-    // useState повертає масив з 2-х ел.: 1-state, 2-фун. що буде міняти цей state -> (setState)
-    // [slide, setSlide] - диструктуризуєм одразу при створенні змінних на 2 ел. з useState
-    // useState(0)       - передаєм одразу значення в змінну-state slide: 0
-
-    const [slide, setSlide] = useState(10);
+    const [slide, setSlide] = useState(0);
     const [autoplay, setAutoplay] = useState(false);
+    //* ______________________________
 
+    useEffect(() => {
+        console.log('title');
+        document.title = `Slide: ${slide}`;
+
+    }, [slide]);
+
+    useEffect(() => {
+        console.log('autoplay')
+    }, [autoplay])
+
+
+    //* ______________________________
     function changeSlide(i) {                      // фун. setState +1\-1
         setSlide(slide => slide + i);
     }
@@ -66,19 +84,6 @@ const Slider = (props) => {
     function toggleAutoplay() {                    // фун. setState toggle
         setAutoplay(autoplay => !autoplay)
     }
-    //*  ______________________________
-
-    //! якщо ми хоченмо зробити state де кілька параметрів в 1 змінній
-    // const [state, setState] = useState({ slide: 0, autoplay: false })
-
-    // function changeSlide(i) {
-    //     setState(state => ({ ...state, slide: state.slide + i }));
-    // }
-
-    // function toggleAutoplay() {
-    //     setState(state => ({ ...state, autoplay: !state.autoplay }))
-    // }
-
 
     return (
         <Container>
@@ -106,6 +111,8 @@ const Slider = (props) => {
         </Container>
     )
 }
+
+
 
 
 export default Slider;
