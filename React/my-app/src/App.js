@@ -5,7 +5,8 @@ import styled from 'styled-components';
 import BootstrapTest from './BootstrapTest';
 import Form from './Ref';
 import AppPortals from './Portals';
-import Slider from './SliderHookState';
+import Slider from './SliderHooks';
+import RefHook from './RefHook';
 
 import './App.css';
 
@@ -193,9 +194,11 @@ function App() {
     return (
 
         <Wrapper>
+            <RefHook />
+
             <Slider />
 
-            <AppPortals />
+            {/* <AppPortals /> */}
 
             <Form />
 
