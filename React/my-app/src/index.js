@@ -12,13 +12,15 @@ const BigButton = styled(Button)`                           //! Наслідув
 margin: 0 auto;
 width: 245px;
 height: 30px;
+margin-bottom: 20px;
+
 `
 
 ReactDOM.render(
     <StrictMode>
         <App />
         <BigButton as="a"> Відправити звіт </BigButton>
-        <BootstrapFormSlider />
+        {/* <BootstrapFormSlider /> */}
     </StrictMode>,
     document.getElementById('root')      /* куди ми розміщуєм */
 );

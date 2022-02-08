@@ -7,6 +7,7 @@ import Form from './Ref';
 import AppPortals from './Portals';
 import Slider from './SliderHooks';
 import RefHook from './RefHook';
+import CustomHook from './CustomHook';
 
 import './App.css';
 
@@ -194,23 +195,21 @@ function App() {
     return (
 
         <Wrapper>
-            <RefHook />
-
-            <Slider />
-
+            <CustomHook />
+            {/* <RefHook /> */}
+            {/* <Slider /> */}
             {/* <AppPortals /> */}
-
             <Form />
 
             <Counter render={counter => (
                 <Message counter={counter} />
             )} />
 
-            <Field />
-            <Btn />
+            {/* <Field /> */}
+            {/* <Btn /> */}
 
 
-            <HelloCreating />
+            {/* <HelloCreating /> */}
             <BootstrapTest
                 left={
                     <DynamicCreating color={'primary'}>
