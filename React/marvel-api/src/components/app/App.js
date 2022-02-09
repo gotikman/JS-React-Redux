@@ -4,6 +4,7 @@ import RandomChar from "../randomChar/RandomChar";
 import CharList from "../charList/CharList";
 import CharInfo from "../charInfo/CharInfo";
 import ErrorBoundary from "../errorBoundary/ErrorBoundary";
+import ComicsList from "../comicsList/ComicsList";
 
 import decoration from '../../resources/img/vision.png';
 
@@ -11,17 +12,17 @@ import decoration from '../../resources/img/vision.png';
 
 const App = () => {
 
-    const [selectedChar, setChar] = useState();     //! стейт для підйому id
+    // const [selectedChar, setChar] = useState();     //! стейт для підйому id
 
-    const onCharSelected = (id) => {               //! підйом id вибраного перса з CharList
-        setChar(id);
-    }
+    // const onCharSelected = (id) => {               //! підйом id вибраного перса з CharList
+    //     setChar(id);
+    // }
 
     return (
         <div className="app">
             <AppHeader />
             <main>
-                <ErrorBoundary>
+                {/* <ErrorBoundary>
                     <RandomChar />
                 </ErrorBoundary>
                 <div className="char__content">
@@ -30,8 +31,11 @@ const App = () => {
                     </ErrorBoundary>
                     <ErrorBoundary>
                         <CharInfo charId={selectedChar} />
-                    </ErrorBoundary>
-                </div>
+                    </ErrorBoundary>                    
+                </div> */}
+
+                <ComicsList />
+
                 <img className="bg-decoration" src={decoration} alt="vision" />
             </main>
         </div>
