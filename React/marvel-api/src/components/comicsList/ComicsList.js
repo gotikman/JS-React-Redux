@@ -14,11 +14,10 @@ const ComicsList = () => {
 
     const { loading, error, getAllComics } = useMarvelService();
 
-    const temp = useMarvelService();
 
     useEffect(() => {
         onRequest(offset, true);
-        temp.getAllComics().then(res => console.log(res))
+        // eslint-disable-next-line
     }, [])
 
     const onRequest = (offset, initial) => {
