@@ -28,7 +28,7 @@ const Form = () => {
             <form className="w-50 border mt-5 p-3 m-auto">
                 <div className="mb-3">
                     <input value={`${input.value} / ${textArea.value}`} type="text" className="form-control" readOnly />
-                    <label htmlFor="exampleFormControlInput1" className="form-label mt-3">Email address</label>
+                    <label htmlFor="exampleFormControlInput1" className="form-label mt-3">Email \ Custom Hook</label>
                     <input
                         onChange={input.onChange}
                         type="email"

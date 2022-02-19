@@ -30,7 +30,7 @@ class Form extends Component {
             <Container>
                 <form className="w-50 border mt-5 p-3 m-auto">
                     <div className="mb-3">
-                        <label htmlFor="exampleFormControlInput1" className="form-label">Email address</label>
+                        <label htmlFor="exampleFormControlInput1" className="form-label">Email \ ref</label>
                         <input
                             ref={this.setInputRef}
                             type="email"

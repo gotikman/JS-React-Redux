@@ -8,6 +8,8 @@ import AppPortals from './Portals';
 import Slider from './SliderHooks';
 import RefHook from './RefHook';
 import CustomHook from './CustomHook';
+import Memo from './ReactMemo';
+import UseContext from './UseContext';
 
 import './App.css';
 
@@ -195,7 +197,10 @@ function App() {
     return (
 
         <Wrapper>
-            <CustomHook />
+            <UseContext />
+            {/* <Memo /> */}
+
+            {/* <CustomHook /> */}
             {/* <RefHook /> */}
             {/* <Slider /> */}
             {/* <AppPortals /> */}
