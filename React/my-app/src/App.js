@@ -10,6 +10,7 @@ import RefHook from './RefHook';
 import CustomHook from './CustomHook';
 import Memo from './ReactMemo';
 import UseContext from './UseContext';
+import UseReducer from './UseReducer';
 
 import './App.css';
 
@@ -197,7 +198,8 @@ function App() {
     return (
 
         <Wrapper>
-            <UseContext />
+            <UseReducer />
+            {/* <UseContext /> */}
             {/* <Memo /> */}
 
             {/* <CustomHook /> */}
