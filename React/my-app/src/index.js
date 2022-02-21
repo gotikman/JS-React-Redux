@@ -19,7 +19,7 @@ margin-bottom: 20px;
 ReactDOM.render(
     <StrictMode>
         <App />
-        <BigButton as="a"> Відправити звіт </BigButton>
+        {/* <BigButton as="a"> Відправити звіт </BigButton> */}
         {/* <BootstrapFormSlider /> */}
     </StrictMode>,
     document.getElementById('root')      /* куди ми розміщуєм */

@@ -11,6 +11,7 @@ import CustomHook from './CustomHook';
 import Memo from './ReactMemo';
 import UseContext from './UseContext';
 import UseReducer from './UseReducer';
+import HigherOrder from './HigherOrderCom'
 
 import './App.css';
 
@@ -198,7 +199,8 @@ function App() {
     return (
 
         <Wrapper>
-            <UseReducer />
+            <HigherOrder />
+            {/* <UseReducer /> */}
             {/* <UseContext /> */}
             {/* <Memo /> */}
 
@@ -206,18 +208,19 @@ function App() {
             {/* <RefHook /> */}
             {/* <Slider /> */}
             {/* <AppPortals /> */}
-            <Form />
+            {/* <Form /> */}
 
-            <Counter render={counter => (
+            {/* <Counter render={counter => (
                 <Message counter={counter} />
-            )} />
+            )} /> */}
 
             {/* <Field /> */}
             {/* <Btn /> */}
 
 
             {/* <HelloCreating /> */}
-            <BootstrapTest
+
+            {/* <BootstrapTest
                 left={
                     <DynamicCreating color={'primary'}>
                         <h2>Hello World</h2>
@@ -230,10 +233,10 @@ function App() {
                         <h2>Thx a lot</h2>
                     </DynamicCreating>
                 }
-            />
+            /> */}
 
-            <StatComp name="Roman" surname="Smith" link="www.google.com" />
-            <StatComp name="Igor" surname="Pavelko" link="www.google.com" />
+            {/* <StatComp name="Roman" surname="Smith" link="www.google.com" />
+            <StatComp name="Igor" surname="Pavelko" link="www.google.com" /> */}
 
         </Wrapper>
     );
