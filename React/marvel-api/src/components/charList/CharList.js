@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef } from 'react';
 import PropTypes from 'prop-types';
+import { CSSTransition, TransitionGroup } from 'react-transition-group'
 
 import Spinner from '../spinner/Spinner';
 import ErrorMessage from '../errorMassage/ErrorMessage';
@@ -9,7 +10,6 @@ import './charList.scss';
 const CharList = (props) => {
 
     const [charList, setCharList] = useState([]);
-
     const [newItemLoading, setNewItemLoading] = useState(false);
     const [offset, setOffset] = useState(210);                      // 1539 тестування останніх
     const [charEnded, setCharEnded] = useState(false);
@@ -56,33 +56,38 @@ const CharList = (props) => {
     function renderItems(arr) {
         const items = arr.map((item, i) => {
             const checkCover = item.thumbnail.search('not_available') > 0 ? { objectFit: 'unset' } : null;
-            return (
-                <li
-                    className="char__item"
-                    tabIndex={0}
-                    ref={el => itemRefs.current[i] = el}
-                    key={item.key}
-                    onClick={() => {
-                        props.onCharSelected(item.key)
-                        focusOnItem(i)
-                    }}
-                    onKeyPress={(e) => {
-                        if (e.key === ' ' || e.key === "Enter") {
-                            props.onCharSelected(item.key);
-                            focusOnItem(i);
-                        }
-                    }}
-                >
 
-                    <img src={item.thumbnail} alt="abyss" style={checkCover} />
-                    <div className="char__name">{item.name}</div>
-                </li>
+            return (
+                <CSSTransition key={item.id} timeout={500} classNames="char__item">
+                    <li
+                        className="char__item"
+                        tabIndex={0}
+                        ref={el => itemRefs.current[i] = el}
+                        key={item.key}
+                        onClick={() => {
+                            props.onCharSelected(item.key)
+                            focusOnItem(i)
+                        }}
+                        onKeyPress={(e) => {
+                            if (e.key === ' ' || e.key === "Enter") {
+                                props.onCharSelected(item.key);
+                                focusOnItem(i);
+                            }
+                        }}
+                    >
+
+                        <img src={item.thumbnail} alt="abyss" style={checkCover} />
+                        <div className="char__name">{item.name}</div>
+                    </li>
+                </CSSTransition>
             )
         })
 
         return (
             <ul className="char__grid">
-                {items}
+                <TransitionGroup component={null}>
+                    {items}
+                </TransitionGroup>
             </ul>
         )
     }
