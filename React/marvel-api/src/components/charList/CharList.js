@@ -58,7 +58,7 @@ const CharList = (props) => {
             const checkCover = item.thumbnail.search('not_available') > 0 ? { objectFit: 'unset' } : null;
 
             return (
-                <CSSTransition key={item.id} timeout={500} classNames="char__item">
+                <CSSTransition key={item.key} timeout={500} classNames="char__item">
                     <li
                         className="char__item"
                         tabIndex={0}
