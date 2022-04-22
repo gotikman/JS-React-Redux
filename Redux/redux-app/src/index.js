@@ -1,56 +1,25 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import { createStore, bindActionCreators } from 'redux';
+import { createStore } from 'redux';
 import reducer from './reducer';
-import * as actions from './actions';             // import { inc, dec, rnd } from './actions';
+import { Provider } from 'react-redux';           //! передаєм Store по дереву 
 
-const store = createStore(reducer);                //! створюєм сховище
-const { dispatch, subscribe, getState } = store;  // достаєм(диструктуруєм) щоб не писати store.*
+import App from './components/App';
 
-const update = () => {
-  document.getElementById('counter').textContent = getState().value;
-}
-
-subscribe(update);
-
-// -------------------------------------------------------------------------------
-//! bindActionCreator - функція генерує функції для подій (Action Creator)
-// цу функція що повертає іншу функцію в якій буде щось відбуватися
-// creator - це фун що має повернути обєкт з певним типом -> { type: 'DEC' }
-// ...args - це можливі аргументи що можуть приходити (розгортаєм rest оператором)
-
-// const bindActionCreator = (creator, dispatch) => (...args) => {
-//   dispatch(creator(...args));
-// }
-
-// const incDispatch = bindActionCreators(inc, dispatch);
-// const decDispatch = bindActionCreators(dec, dispatch);
-// const rndDispatch = bindActionCreators(rnd, dispatch);
-
-//* actions - обєкт з подіями що імпортнули --> export const inc = () => ({ type: 'INC' })
-const { inc, dec, rnd } = bindActionCreators(actions, dispatch);
-
-
-
-// -------------------------------------------------------------------------------
-document.getElementById('inc').addEventListener('click', inc)
-
-document.getElementById('dec').addEventListener('click', dec)
-
-document.getElementById('rnd').addEventListener('click', () => {
-  const value = Math.floor(Math.random() * 10);
-  rnd(value);                                        // передаєм значення рандом формули
-})
-
+const store = createStore(reducer,
+  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());               // створюєм сховище
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <>
 
-    </>
+    <Provider store={store}>
+      <App />
+    </Provider>
   </React.StrictMode>
 );
+
+
 
 
