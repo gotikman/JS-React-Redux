@@ -1,34 +1,34 @@
 {
   "heroes": [
     {
-      "id": "08d3ce56-e0d0-442f-b06a-78473b2b2f26",
-      "name": "вогонь",
+      "id": "e7916339-eb2c-4286-be19-cede4f856b3b",
+      "name": "Вогонь",
       "description": "вогонь",
-      "element": "fire"
+      "element": "Вогонь"
     },
     {
-      "id": "1bea43bb-c65f-4cf5-a8c6-efb15f7ca329",
-      "name": "вода",
+      "id": "f5be8622-9f8c-4428-96c8-d7c4dc39de00",
+      "name": "Вода",
       "description": "вода",
-      "element": "water"
+      "element": "Вода"
     },
     {
-      "id": "f96ee93c-bc54-406a-aa59-db10c442165b",
-      "name": "вітер",
-      "description": "вітер",
-      "element": "wind"
-    },
-    {
-      "id": "d212a710-6313-4298-acb9-25c87ff2836a",
-      "name": "хз",
-      "description": "хз\n",
+      "id": "baf8d9e4-ce3f-44e8-a7e1-d22911cb48e9",
+      "name": "Видивник Руслан",
+      "description": "sdf",
       "element": ""
     },
     {
-      "id": "d1116242-3846-4f53-92c7-10aa02e36017",
-      "name": "зумля",
-      "description": "зумля",
-      "element": "earth"
+      "id": "5277fac0-9e40-4844-a8e7-f8de79eefabf",
+      "name": "Gotikman",
+      "description": "wer",
+      "element": "Земля"
+    },
+    {
+      "id": "e21ddf37-6948-49d6-b212-ea163d6c2c79",
+      "name": "Видивник Руслан",
+      "description": "sdfd",
+      "element": "Земля"
     }
   ],
   "filters": [
@@ -37,5 +37,27 @@
     "water",
     "wind",
     "earth"
+  ],
+  "filtersColor": [
+    {
+      "elementName": "Все",
+      "className": "btn btn-outline-dark"
+    },
+    {
+      "elementName": "Вогонь",
+      "className": "btn btn-danger"
+    },
+    {
+      "elementName": "Вода",
+      "className": "btn btn-primary"
+    },
+    {
+      "elementName": "Вітер",
+      "className": "btn btn-success"
+    },
+    {
+      "elementName": "Земля",
+      "className": "btn btn-secondary"
+    }
   ]
 }

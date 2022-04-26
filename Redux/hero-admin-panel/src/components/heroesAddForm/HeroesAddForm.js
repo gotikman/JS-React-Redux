@@ -5,8 +5,8 @@
 //* Усложненная задача:
 // Персонаж создается и в файле json при помощи метода POST
 //* Дополнительно:
-//! Элементы <option></option> желательно сформировать на базе
-//! данных из фильтро
+// Элементы <option></option> желательно сформировать на базе
+// данных из фильтро
 
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from 'react-redux';
@@ -25,6 +25,21 @@ const HeroesAddForm = () => {
         description: '',
         element: ''
     })
+    const [filters, setFilters] = useState([]);
+
+    // --------------------------------------------------------
+    useEffect(() => {
+        request("http://localhost:3001/filtersColor")
+            .then(data => setFilters(data))
+        // eslint-disable-next-line
+    }, []);
+
+    const renderSelect = filters.map(({ elementName }) => {
+        return (
+            <option key={uuidv4()} value={elementName}>{elementName}</option>
+        )
+    })
+
     // --------------------------------------------------------
     const onValueChange = (e) => {
         setState({ ...state, [e.target.name]: e.target.value })
@@ -50,9 +65,6 @@ const HeroesAddForm = () => {
             element: ''
         })
     }
-    // --------------------------------------------------------
-
-
 
     //! --------------------------------------------------------
     return (
@@ -84,13 +96,8 @@ const HeroesAddForm = () => {
                     onChange={onValueChange}
                     value={state.element}>
 
-                    {<ElementsList />}
+                    {renderSelect}
 
-                    {/* <option >Я владею элементом...</option>
-                    <option value="fire">Огонь</option>
-                    <option value="water">Вода</option>
-                    <option value="wind">Ветер</option>
-                    <option value="earth">Земля</option> */}
                 </select>
             </div>
 
@@ -99,36 +106,5 @@ const HeroesAddForm = () => {
         </form>
     )
 }
-
-//! --------------------------------------------------------
-const RenderElements = ({ elem }) => {
-    return <option value={elem}>{elem}</option>
-}
-
-const ElementsList = () => {
-    const { request } = useHttp();
-    const [elements, setElement] = useState([]);
-
-    useEffect(() => {
-        request("http://localhost:3001/filters")
-            .then(data => setElement(data))
-        // eslint-disable-next-line
-    }, []);
-
-    const renderElementsList = (element) => {
-        return element.map((item, i) => {
-            return <RenderElements elem={item} key={i} />
-        })
-    }
-
-    const allElements = renderElementsList(elements);
-
-    return (
-        <>
-            {allElements}
-        </>
-    )
-}
-//! --------------------------------------------------------
 
 export default HeroesAddForm;

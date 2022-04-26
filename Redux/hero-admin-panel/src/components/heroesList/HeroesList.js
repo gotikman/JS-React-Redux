@@ -6,13 +6,13 @@ import { heroesFetching, heroesFetched, heroesFetchingError, heroesDeleted } fro
 import HeroesListItem from "../heroesListItem/HeroesListItem";
 import Spinner from '../spinner/Spinner';
 
-//* Задача для этого компонента:
+// Задача для этого компонента:
 // При клике на "крестик" идет удаление персонажа из общего состояния
-//* Усложненная задача:
+// Усложненная задача:
 // Удаление идет и с json файла при помощи метода DELETE
 
 const HeroesList = () => {
-    const { heroes, heroesLoadingStatus } = useSelector(state => state);
+    const { heroes, heroesLoadingStatus, filters } = useSelector(state => state);
     const dispatch = useDispatch();
     const { request } = useHttp();
 
@@ -21,7 +21,6 @@ const HeroesList = () => {
         request("http://localhost:3001/heroes")
             .then(data => dispatch(heroesFetched(data)))
             .catch(() => dispatch(heroesFetchingError()))
-
         // eslint-disable-next-line
     }, []);
 
@@ -33,8 +32,23 @@ const HeroesList = () => {
         request(`http://localhost:3001/heroes/${id}`, 'DELETE')
     }
     //! --------------------------------------------------------
-
-    // console.log(heroes);
+    const filterHeroes = (heroes, filters) => {
+        switch (filters) {
+            case 'Все':
+                return heroes;
+            case 'Вогонь':
+                return heroes.filter(item => item.element === filters);
+            case 'Вода':
+                return heroes.filter(item => item.element === filters);
+            case 'Вітер':
+                return heroes.filter(item => item.element === filters);
+            case 'Земля':
+                return heroes.filter(item => item.element === filters);
+            default:
+                return heroes
+        }
+    }
+    //! --------------------------------------------------------
 
     if (heroesLoadingStatus === "loading") {
         return <Spinner />;
@@ -55,8 +69,7 @@ const HeroesList = () => {
         })
     }
 
-
-    const elements = renderHeroesList(heroes);
+    const elements = renderHeroesList(filterHeroes(heroes, filters));
 
     return (
         <ul>
