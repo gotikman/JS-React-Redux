@@ -1,20 +1,22 @@
-//! Задача для этого компонента:
-//* Фильтры должны формироваться на основании загруженных данных
+//* Задача для этого компонента:
+// Фильтры должны формироваться на основании загруженных данных
 // Фильтры должны отображать только нужных героев при выборе
-// Активный фильтр имеет класс active  //! Library
+// Активный фильтр имеет класс active   
 // Изменять json-файл для удобства МОЖНО!
 // Представьте, что вы попросили бэкенд-разработчика об этом
 
 import { useEffect, useState } from "react";
 import { useHttp } from '../../hooks/http.hook';
 import { v4 as uuidv4 } from 'uuid';
-import { useDispatch } from 'react-redux';
 import { filterSelected } from '../../actions';
+import { useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
 
 const HeroesFilters = () => {
     const { request } = useHttp();
-    const [filters, setFilters] = useState([]);
+    const [filterButtons, setFilters] = useState([]);
     const dispatch = useDispatch();
+    const { filters } = useSelector(state => state);
 
     useEffect(() => {
         request("http://localhost:3001/filtersColor")
@@ -26,17 +28,21 @@ const HeroesFilters = () => {
         dispatch(filterSelected(elementName))
     }
 
-    const renderFilter = filters.map(({ elementName, className }) => {
+    const renderFilter = filterButtons.map(({ elementName, className }) => {
+        var classNames = require('classnames');
+        var btnClass = classNames({
+            'active': filters === elementName,
+        });
+
         return (
             <button
                 key={uuidv4()}
-                className={className}
+                className={`${btnClass} ${className}`}
                 onClick={() => onFilterSelected(elementName)}
 
             >{elementName}</button>
         )
     })
-
 
     // ------------------------------------------------------------------------------
     return (
@@ -44,18 +50,9 @@ const HeroesFilters = () => {
             <div className="card-body">
                 <p className="card-text">Отфильтруйте героев по элементам</p>
                 <div className="btn-group">
-                    <button className="btn btn-outline-dark active">Все</button>
-                    <button className="btn btn-danger">Огонь</button>
-                    <button className="btn btn-primary ">Вода</button>
-                    <button className="btn btn-success">Ветер</button>
-                    <button className="btn btn-secondary ">Земля</button>
-                </div>
-            </div>
 
-            <div className="card-body">
-                <p className="card-text">Отфильтруйте героев по элементам</p>
-                <div className="btn-group">
                     {renderFilter}
+
                 </div>
             </div>
 

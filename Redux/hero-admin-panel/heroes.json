@@ -1,18 +1,6 @@
 {
   "heroes": [
     {
-      "id": "e7916339-eb2c-4286-be19-cede4f856b3b",
-      "name": "Вогонь",
-      "description": "вогонь",
-      "element": "Вогонь"
-    },
-    {
-      "id": "f5be8622-9f8c-4428-96c8-d7c4dc39de00",
-      "name": "Вода",
-      "description": "вода",
-      "element": "Вода"
-    },
-    {
       "id": "baf8d9e4-ce3f-44e8-a7e1-d22911cb48e9",
       "name": "Видивник Руслан",
       "description": "sdf",
@@ -25,10 +13,10 @@
       "element": "Земля"
     },
     {
-      "id": "e21ddf37-6948-49d6-b212-ea163d6c2c79",
+      "id": "acd413d5-48ee-470b-a859-1aa239e6f866",
       "name": "Видивник Руслан",
-      "description": "sdfd",
-      "element": "Земля"
+      "description": "dsfg",
+      "element": "Вітер"
     }
   ],
   "filters": [
