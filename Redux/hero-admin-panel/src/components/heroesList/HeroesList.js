@@ -11,6 +11,8 @@ import { heroesFetching, heroesFetched, heroesFetchingError, heroesDeleted } fro
 import HeroesListItem from "../heroesListItem/HeroesListItem";
 import Spinner from '../spinner/Spinner';
 
+import { CSSTransition, TransitionGroup } from 'react-transition-group';
+import './heroesList.css';
 
 const HeroesList = () => {
     const { heroes, heroesLoadingStatus, filters } = useSelector(state => state);
@@ -59,14 +61,19 @@ const HeroesList = () => {
 
     const renderHeroesList = (arr) => {
         if (arr.length === 0) {
+
             return <h5 className="text-center mt-5">Героев пока нет</h5>
         }
 
         return arr.map(({ id, ...props }) => {
-            return <HeroesListItem
-                onDelete={() => deleteHero(id)}
-                key={id}
-                {...props} />
+            return (
+                <CSSTransition key={id} timeout={500} classNames="item">
+                    <HeroesListItem
+                        onDelete={() => deleteHero(id)}
+                        key={id}
+                        {...props} />
+                </CSSTransition>
+            )
         })
     }
     // --------------------------------------------------------
@@ -74,7 +81,9 @@ const HeroesList = () => {
 
     return (
         <ul>
-            {elements}
+            <TransitionGroup component={null}>
+                {elements}
+            </TransitionGroup>
         </ul>
     )
 }

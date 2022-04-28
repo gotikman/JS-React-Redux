@@ -1,22 +1,28 @@
 {
   "heroes": [
     {
-      "id": "baf8d9e4-ce3f-44e8-a7e1-d22911cb48e9",
+      "id": "f7e76760-1fe3-4a52-94a6-96a22368dc97",
       "name": "Видивник Руслан",
-      "description": "sdf",
-      "element": ""
+      "description": "ячсячимси",
+      "element": "Вогонь"
     },
     {
-      "id": "5277fac0-9e40-4844-a8e7-f8de79eefabf",
-      "name": "Gotikman",
-      "description": "wer",
+      "id": "f6800f02-e944-41f7-b268-0cdd90d702fa",
+      "name": "Кексиквіапвп",
+      "description": "пав",
       "element": "Земля"
     },
     {
-      "id": "acd413d5-48ee-470b-a859-1aa239e6f866",
+      "id": "976fdcb5-2d10-4948-8a5d-2590be9881a6",
+      "name": "Gotikman",
+      "description": "апр",
+      "element": "Вогонь"
+    },
+    {
+      "id": "e02172b1-7235-48d7-9bcb-f5e49144dd06",
       "name": "Видивник Руслан",
-      "description": "dsfg",
-      "element": "Вітер"
+      "description": "апр",
+      "element": "Вода"
     }
   ],
   "filters": [
