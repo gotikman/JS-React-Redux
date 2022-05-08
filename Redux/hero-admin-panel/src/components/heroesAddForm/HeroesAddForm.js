@@ -65,33 +65,33 @@ const HeroesAddForm = () => {
     return (
         <form className="border p-4 shadow-lg rounded" onSubmit={onSubmitHandler}>
             <div className="mb-3">
-                <label htmlFor="name" className="form-label fs-4">Имя нового героя</label>
+                <label htmlFor="name" className="form-label fs-4">Імя нового героя</label>
                 <input
                     required
                     type="text"
                     name="name"
                     className="form-control"
                     id="name"
-                    placeholder="Как меня зовут?"
+                    placeholder="Як мене звати?"
                     value={heroName}
                     onChange={(e) => setHeroName(e.target.value)} />
             </div>
 
             <div className="mb-3">
-                <label htmlFor="text" className="form-label fs-4">Описание</label>
+                <label htmlFor="text" className="form-label fs-4">Опис</label>
                 <textarea
                     required
                     name="text"
                     className="form-control"
                     id="text"
-                    placeholder="Что я умею?"
+                    placeholder="Що я вмію?"
                     style={{ "height": '130px' }}
                     value={heroDescr}
                     onChange={(e) => setHeroDescr(e.target.value)} />
             </div>
 
             <div className="mb-3">
-                <label htmlFor="element" className="form-label">Выбрать элемент героя</label>
+                <label htmlFor="element" className="form-label">Вибрати елемент героя</label>
                 <select
                     required
                     className="form-select"
@@ -99,12 +99,12 @@ const HeroesAddForm = () => {
                     name="element"
                     value={heroElement}
                     onChange={(e) => setHeroElement(e.target.value)}>
-                    <option value="">Я владею элементом...</option>
+                    <option value="">Я володію елементом...</option>
                     {renderFilters(filters, filtersLoadingStatus)}
                 </select>
             </div>
 
-            <button type="submit" className="btn btn-primary">Создать</button>
+            <button type="submit" className="btn btn-primary">Створити</button>
         </form>
     )
 }

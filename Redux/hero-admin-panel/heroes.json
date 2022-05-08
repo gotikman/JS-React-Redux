@@ -7,10 +7,16 @@
       "element": "wind"
     },
     {
-      "id": "72ebce59-ea88-4736-8a15-9181aa52329c",
+      "id": "726bd4ec-48c2-475d-a881-2b63fb8562a5",
       "name": "Видивник Руслан",
-      "description": "sdf",
-      "element": "wind"
+      "description": "fgh",
+      "element": "water"
+    },
+    {
+      "id": "07be9828-ba7f-4191-9c83-2d09aeba1b30",
+      "name": "Видивник Руслан",
+      "description": "gfsfd",
+      "element": "fire"
     }
   ],
   "filters": [
@@ -21,7 +27,7 @@
     },
     {
       "name": "fire",
-      "label": "Огонь",
+      "label": "Вогонь",
       "className": "btn-danger"
     },
     {
@@ -31,7 +37,7 @@
     },
     {
       "name": "wind",
-      "label": "Ветер",
+      "label": "Вітер",
       "className": "btn-success"
     },
     {
