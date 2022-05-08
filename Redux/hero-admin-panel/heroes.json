@@ -1,57 +1,43 @@
 {
   "heroes": [
     {
-      "id": "f7e76760-1fe3-4a52-94a6-96a22368dc97",
+      "id": "c15ecccd-9353-4bcc-a773-d8db40ff60c8",
       "name": "Видивник Руслан",
-      "description": "ячсячимси",
-      "element": "Вогонь"
+      "description": "sfd",
+      "element": "wind"
     },
     {
-      "id": "f6800f02-e944-41f7-b268-0cdd90d702fa",
-      "name": "Кексиквіапвп",
-      "description": "пав",
-      "element": "Земля"
-    },
-    {
-      "id": "976fdcb5-2d10-4948-8a5d-2590be9881a6",
-      "name": "Gotikman",
-      "description": "апр",
-      "element": "Вогонь"
-    },
-    {
-      "id": "e02172b1-7235-48d7-9bcb-f5e49144dd06",
+      "id": "72ebce59-ea88-4736-8a15-9181aa52329c",
       "name": "Видивник Руслан",
-      "description": "апр",
-      "element": "Вода"
+      "description": "sdf",
+      "element": "wind"
     }
   ],
   "filters": [
-    "all",
-    "fire",
-    "water",
-    "wind",
-    "earth"
-  ],
-  "filtersColor": [
     {
-      "elementName": "Все",
-      "className": "btn btn-outline-dark"
+      "name": "all",
+      "label": "Все",
+      "className": "btn-outline-dark"
     },
     {
-      "elementName": "Вогонь",
-      "className": "btn btn-danger"
+      "name": "fire",
+      "label": "Огонь",
+      "className": "btn-danger"
     },
     {
-      "elementName": "Вода",
-      "className": "btn btn-primary"
+      "name": "water",
+      "label": "Вода",
+      "className": "btn-primary"
     },
     {
-      "elementName": "Вітер",
-      "className": "btn btn-success"
+      "name": "wind",
+      "label": "Ветер",
+      "className": "btn-success"
     },
     {
-      "elementName": "Земля",
-      "className": "btn btn-secondary"
+      "name": "earth",
+      "label": "Земля",
+      "className": "btn-secondary"
     }
   ]
 }

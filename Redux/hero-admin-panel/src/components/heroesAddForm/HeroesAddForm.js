@@ -8,101 +8,103 @@
 // Элементы <option></option> желательно сформировать на базе
 // данных из фильтро
 
-import { useState, useEffect } from "react";
+import { useHttp } from '../../hooks/http.hook';
+import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { v4 as uuidv4 } from 'uuid';
-import { heroesAdded } from '../../actions';
-import { useHttp } from '../../hooks/http.hook';
+
+import { heroCreated } from '../../actions';
 
 const HeroesAddForm = () => {
-    //! --------------------------------------------------------
-    const { heroes } = useSelector(state => state);
+    // контроль форми
+    const [heroName, setHeroName] = useState('');
+    const [heroDescr, setHeroDescr] = useState('');
+    const [heroElement, setHeroElement] = useState('');
+
+    const { filters, filtersLoadingStatus } = useSelector(state => state);
     const dispatch = useDispatch();
     const { request } = useHttp();
 
-    const [state, setState] = useState({
-        name: '',
-        description: '',
-        element: ''
-    })
-    const [filters, setFilters] = useState([]);
-
-    // --------------------------------------------------------
-    useEffect(() => {
-        request("http://localhost:3001/filtersColor")
-            .then(data => setFilters(data))
-        // eslint-disable-next-line
-    }, []);
-
-    const renderSelect = filters.map(({ elementName }) => {
-        return (
-            <option key={uuidv4()} value={elementName}>{elementName}</option>
-        )
-    })
-
-    // --------------------------------------------------------
-    const onValueChange = (e) => {
-        setState({ ...state, [e.target.name]: e.target.value })
-    }
-    // --------------------------------------------------------
-    const onSubmiting = (e) => {
-        e.preventDefault()
-        const newItem = {
+    const onSubmitHandler = (e) => {
+        e.preventDefault();
+        const newHero = {
             id: uuidv4(),
-            name: state.name,
-            description: state.description,
-            element: state.element
+            name: heroName,
+            description: heroDescr,
+            element: heroElement
         }
 
-        const newList = [...heroes, newItem];
-        dispatch(heroesAdded(newList));
+        // Відправка данних на сервер у форматі JSON
+        request("http://localhost:3001/heroes", "POST", JSON.stringify(newHero))
+            .then(res => console.log(res, 'Отправка успешна'))
+            .then(dispatch(heroCreated(newHero)))
+            .catch(err => console.log(err));
 
-        request("http://localhost:3001/heroes", 'POST', JSON.stringify(newItem));
-
-        setState({
-            name: '',
-            description: '',
-            element: ''
-        })
+        setHeroName('');
+        setHeroDescr('');
+        setHeroElement('');
     }
 
-    //! --------------------------------------------------------
+    const renderFilters = (filters, status) => {
+        if (status === "loading") {
+            return <option>Загрузка элементов</option>
+        } else if (status === "error") {
+            return <option>Ошибка загрузки</option>
+        }
+
+        if (filters && filters.length > 0) {
+            return filters.map(({ name, label }) => {
+                // eslint-disable-next-line
+                if (name === 'all') return;
+
+                return <option key={name} value={name}>{label}</option>
+            })
+        }
+    }
+
     return (
-        <form className="border p-4 shadow-lg rounded"
-            onSubmit={onSubmiting}
-        >
+        <form className="border p-4 shadow-lg rounded" onSubmit={onSubmitHandler}>
             <div className="mb-3">
                 <label htmlFor="name" className="form-label fs-4">Имя нового героя</label>
-                <input required type="text" className="form-control" id="name" placeholder="Как меня зовут?"
+                <input
+                    required
+                    type="text"
                     name="name"
-                    value={state.name}
-                    onChange={onValueChange}
-                />
+                    className="form-control"
+                    id="name"
+                    placeholder="Как меня зовут?"
+                    value={heroName}
+                    onChange={(e) => setHeroName(e.target.value)} />
             </div>
 
             <div className="mb-3">
                 <label htmlFor="text" className="form-label fs-4">Описание</label>
-                <textarea required className="form-control" id="text" placeholder="Что я умею?"
-                    name="description"
-                    value={state.description}
-                    onChange={onValueChange}
-                    style={{ "height": '130px' }} />
+                <textarea
+                    required
+                    name="text"
+                    className="form-control"
+                    id="text"
+                    placeholder="Что я умею?"
+                    style={{ "height": '130px' }}
+                    value={heroDescr}
+                    onChange={(e) => setHeroDescr(e.target.value)} />
             </div>
 
             <div className="mb-3">
                 <label htmlFor="element" className="form-label">Выбрать элемент героя</label>
-                <select required className="form-select" id="element"
+                <select
+                    required
+                    className="form-select"
+                    id="element"
                     name="element"
-                    onChange={onValueChange}
-                    value={state.element}>
-
-                    {renderSelect}
-
+                    value={heroElement}
+                    onChange={(e) => setHeroElement(e.target.value)}>
+                    <option value="">Я владею элементом...</option>
+                    {renderFilters(filters, filtersLoadingStatus)}
                 </select>
             </div>
 
-            <button type="submit" className="btn btn-primary"
-            >Создать</button>
+            <button type="submit" className="btn btn-primary">Создать</button>
         </form>
     )
 }
