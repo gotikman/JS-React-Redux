@@ -7,22 +7,28 @@
       "element": "wind"
     },
     {
-      "id": "7c41db0f-b55a-4f0d-9e16-fb6ce554ba6b",
-      "name": "dfg",
-      "description": "gdf",
-      "element": "fire"
-    },
-    {
-      "id": "2a80241f-ef66-49c2-8bb1-34e6ede76fee",
-      "name": "Видивник Руслан",
-      "description": "віа",
-      "element": "water"
-    },
-    {
       "id": "8b1246d7-53cd-4ec1-8a68-6e469b569a6e",
       "name": "Видивник Руслан",
       "description": "fdsf",
       "element": "fire"
+    },
+    {
+      "id": "bf0d11cd-71d2-469e-978e-007d7fed5139",
+      "name": "Юра Вольбин",
+      "description": "Дрочити",
+      "element": "water"
+    },
+    {
+      "id": "c4e9c698-af2d-4e41-8ee6-33c5730f270a",
+      "name": "hfg",
+      "description": "hfdg",
+      "element": "earth"
+    },
+    {
+      "id": "c673a130-41f0-4289-ae2f-c5a03105746e",
+      "name": "Руслан",
+      "description": "нке",
+      "element": "water"
     }
   ],
   "filters": [
