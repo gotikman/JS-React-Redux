@@ -1,38 +1,41 @@
-import { createReducer } from "@reduxjs/toolkit"
+//! після використання heroesSlise() даний файл не потрібний
 
-import {
-    heroesFetching,
-    heroesFetched,
-    heroesFetchingError,
-    heroCreated,
-    heroDeleted
-} from '../actions';
+// import { createReducer } from "@reduxjs/toolkit"
 
-const initialState = {
-    heroes: [],
-    heroesLoadingStatus: 'idle',
-}
+// import {
+//     heroesFetching,
+//     heroesFetched,
+//     heroesFetchingError,
+//     heroCreated,
+//     heroDeleted
+// } from '../actions';
 
-const heroes = createReducer(initialState, builder => {
-    builder
-        .addCase(heroesFetching, state => {
-            state.heroesLoadingStatus = 'loading'
-        })
-        .addCase(heroesFetched, (state, action) => {
-            state.heroesLoadingStatus = 'idle';
-            state.heroes = action.payload;
-        })
-        .addCase(heroesFetchingError, state => {
-            state.heroesLoadingStatus = 'error';
-        })
-        .addCase(heroCreated, (state, action) => {
-            state.heroes.push(action.payload)
-        })
-        .addCase(heroDeleted, (state, action) => {
-            state.heroes = state.heroes.filter(item => item.id !== action.payload)
-        })
-        .addDefaultCase(() => { })
-})
+// const initialState = {
+//     heroes: [],
+//     heroesLoadingStatus: 'idle',
+// }
+
+//* 1-й спосіб використання createReducer()
+// const heroes = createReducer(initialState, builder => {
+//     builder
+//         .addCase(heroesFetching, state => {
+//             state.heroesLoadingStatus = 'loading'
+//         })
+//         .addCase(heroesFetched, (state, action) => {
+//             state.heroesLoadingStatus = 'idle';
+//             state.heroes = action.payload;
+//         })
+//         .addCase(heroesFetchingError, state => {
+//             state.heroesLoadingStatus = 'error';
+//         })
+//         .addCase(heroCreated, (state, action) => {
+//             state.heroes.push(action.payload)
+//         })
+//         .addCase(heroDeleted, (state, action) => {
+//             state.heroes = state.heroes.filter(item => item.id !== action.payload)
+//         })
+//         .addDefaultCase(() => { })
+// })
 
 //* 2-й спосіб використання createReducer()
 // const heroes = createReducer(initialState, {
@@ -90,4 +93,4 @@ const heroes = createReducer(initialState, builder => {
 //     }
 // }
 
-export default heroes;
+// export default heroes;
