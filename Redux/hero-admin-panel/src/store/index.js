@@ -2,7 +2,7 @@
 import { configureStore } from '@reduxjs/toolkit'
 // import heroes from '../reducers/heroes';
 // import filters from '../reducers/filters';
-import filters from '../components/heroesFilters/filrersSlice';
+import filters from '../components/heroesFilters/filtersSlice';
 import heroes from '../components/heroesList/heroesSlice';
 
 
