@@ -1,28 +1,22 @@
 {
   "heroes": [
     {
-      "id": "c15ecccd-9353-4bcc-a773-d8db40ff60c8",
-      "name": "Видивник Руслан",
-      "description": "sfd",
+      "id": "eab72289-a271-40f9-b5e9-0dfd50c0e9a6",
+      "name": "Руслан",
+      "description": "asfd",
+      "element": "fire"
+    },
+    {
+      "id": "5af3db9c-986c-4164-b66d-0ac30c4b9e9e",
+      "name": "ячся",
+      "description": "ясм",
       "element": "wind"
     },
     {
-      "id": "03bc21de-4b36-44a1-93c0-f28c8d788f40",
+      "id": "11a12bc7-aacf-4117-be84-1248201292fe",
       "name": "Кексиквіапвп",
-      "description": "dfs",
-      "element": "wind"
-    },
-    {
-      "id": "61774297-24a4-4c04-93ec-f9e9f180daec",
-      "name": "Видивник Руслан",
-      "description": "asdf",
-      "element": "water"
-    },
-    {
-      "id": "c4f00359-6fdd-4e6d-af77-14658dcb3ce2",
-      "name": "Видивник Руслан",
-      "description": "sdgf",
-      "element": "water"
+      "description": "іфваві",
+      "element": "earth"
     }
   ],
   "filters": [
