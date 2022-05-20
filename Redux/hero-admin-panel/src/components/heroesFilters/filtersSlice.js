@@ -1,12 +1,20 @@
-import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import { createSlice, createAsyncThunk, createEntityAdapter } from "@reduxjs/toolkit";
 import { useHttp } from '../../hooks/http.hook';
 
-const initialState = {
-    filters: [],
+// --------------------------------------------------------
+// const initialState = {
+//     filters: [],
+//     filtersLoadingStatus: 'idle',
+//     activeFilter: 'all'
+// }
+//! createEntityAdapter() 
+const filtersAdapter = createEntityAdapter();
+
+const initialState = filtersAdapter.getInitialState({
     filtersLoadingStatus: 'idle',
     activeFilter: 'all'
-}
-
+})
+// --------------------------------------------------------
 //! createAsyncThunk()
 // fn поверне 3 'type' action creators:  //! panding, fulfilled, rejected
 export const fetchFilters = createAsyncThunk(
@@ -16,19 +24,15 @@ export const fetchFilters = createAsyncThunk(
         return await request("http://localhost:3001/filters")
     }
 )
-
+// --------------------------------------------------------
 //! функція приймає 4 аргументи та поверне 3 сутності: імя зрізу, обєкт з action, reducer
 const filtersSlice = createSlice({
     name: 'filters',
     initialState,
     reducers: {
-        filtersFetching: state => { state.filtersLoadingStatus = 'loading' },
-        filtersFetched: (state, action) => {
-            state.filtersLoadingStatus = 'idle';
-            state.filters = action.payload
-        },
-        filtersFetchingError: state => { state.filtersLoadingStatus = 'error' },
-        activeFilterChanged: (state, action) => { state.activeFilter = action.payload }
+        filtersChanged: (state, action) => {
+            state.activeFilter = action.payload
+        }
     },
     extraReducers: (builder) => {
         builder
@@ -37,22 +41,31 @@ const filtersSlice = createSlice({
             })
             .addCase(fetchFilters.fulfilled, (state, action) => {
                 state.filtersLoadingStatus = 'idle';
-                state.filters = action.payload
+                // state.filters = action.payload
+                filtersAdapter.setAll(state, action.payload)         //! CRUD Записав усі фільтри з адаптера
             })
             .addCase(fetchFilters.rejected, state => {
                 state.filtersLoadingStatus = 'error'
             })
+            .addDefaultCase(() => { })
     }
 });
 
 //! Витягуєм Actions, Reducer 
 const { actions, reducer } = filtersSlice;
+// --------------------------------------------------------
 
+//! витягуєм-експортуєм усі фільтри з адаптера
+export const { selectAll } = filtersAdapter.getSelectors(state => state.filters);
+
+// --------------------------------------------------------
 //! Експортуєм Actions, Reducer
 export default reducer;
+
 export const {
     filtersFetching,
     filtersFetched,
     filtersFetchingError,
-    activeFilterChanged
+    filtersChanged
 } = actions;
+
