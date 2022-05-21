@@ -1,4 +1,4 @@
-## JS-React-Redux Navigation
+## Navigation :mag_right:
 
 ### JavaScript
 + All materials https://github.com/gotikman/JS-React-Redux/tree/master/JavaScript
