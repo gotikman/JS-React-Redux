@@ -2,9 +2,7 @@
 
 ### JavaScript
 + All materials https://github.com/gotikman/JS-React-Redux/tree/master/JavaScript
-+ Modules       https://github.com/gotikman/JS-React-Redux/tree/master/JavaScript/!Advanced-JS-Practice/js/modules
-+ Services      https://github.com/gotikman/JS-React-Redux/tree/master/JavaScript/!Advanced-JS-Practice/js/services
- 
++ Projects https://github.com/gotikman/JS-React-Redux/tree/master/JavaScript/!Projects-JS
 
 ### React
 + Projects  https://github.com/gotikman/JS-React-Redux/tree/master/React
