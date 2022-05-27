@@ -1,6 +1,6 @@
 
 //! Таби з Делегуванням подій, універсальний модуль 
-const tabs = (headerSelector, tabSelector, contentSelector, activeClass) => {
+const tabs = (headerSelector, tabSelector, contentSelector, activeClass, display = 'block') => {
 
     const header = document.querySelector(headerSelector),
         tab = document.querySelectorAll(tabSelector),
@@ -17,7 +17,7 @@ const tabs = (headerSelector, tabSelector, contentSelector, activeClass) => {
     }
 
     function showTabContent(i = 0) {
-        content[i].style.display = 'block';
+        content[i].style.display = display;        // 'block' деф. знач, але може прийти 'inline'
         tab[i].classList.add(activeClass);
     }
 

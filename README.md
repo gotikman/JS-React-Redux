@@ -1,12 +1,14 @@
 ## Navigation :mag_right:
 
 ### JavaScript
-+ All materials https://github.com/gotikman/JS-React-Redux/tree/master/JavaScript
-+ Projects https://github.com/gotikman/JS-React-Redux/tree/master/JavaScript/!Projects-JS
++ [All materials](https://github.com/gotikman/JS-React-Redux/tree/master/JavaScript)
++ [Projects](https://github.com/gotikman/JS-React-Redux/tree/master/JavaScript/00.%20PROJECT-JS)
++ [Services](https://github.com/gotikman/JS-React-Redux/tree/master/JavaScript/00.%20PROJECT-JS/advanced-js-practice/js/services)
+
 
 ### React
-+ Projects  https://github.com/gotikman/JS-React-Redux/tree/master/React
-+ Sevices   https://github.com/gotikman/JS-React-Redux/tree/master/React/marvel-api/src/services
++ [Projects](https://github.com/gotikman/JS-React-Redux/tree/master/React)
++ [Services](https://github.com/gotikman/JS-React-Redux/tree/master/React/marvel-api/src/services)
 
 ### Redux
-+ Projects https://github.com/gotikman/JS-React-Redux/tree/master/Redux
++ [Projects](https://github.com/gotikman/JS-React-Redux/tree/master/Redux)
