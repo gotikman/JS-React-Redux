@@ -2,8 +2,8 @@
 
 ### JavaScript
 + [All materials](https://github.com/gotikman/JS-React-Redux/tree/master/JavaScript)
-+ [Projects](https://github.com/gotikman/JS-React-Redux/tree/master/JavaScript/00.%20PROJECT-JS)
-+ [Services](https://github.com/gotikman/JS-React-Redux/tree/master/JavaScript/00.%20PROJECT-JS/advanced-js-practice/js/services)
++ [Projects](https://github.com/gotikman/JS-React-Redux/tree/master/JavaScript/00.%20PROJECTS-JS)
++ [Services](https://github.com/gotikman/JS-React-Redux/tree/master/JavaScript/00.%20PROJECTS-JS/advanced-js-practice/js/services)
 
 
 ### React
