@@ -20,7 +20,8 @@ export const fetchHeroes = createAsyncThunk(
     'heroes/fetchHeroes',                           // name тип події- імя зрізу\тип дії
     async () => {                                   // fn повертає PROMISE, приймає (ID, різні API самого thunk)
         const { request } = useHttp();
-        return await request("http://localhost:3001/heroes")
+        // return await request("http://localhost:3001/heroes")
+        return await request("https://my-json-server-database.herokuapp.com/heroes")
     }
 );
 // --------------------------------------------------------

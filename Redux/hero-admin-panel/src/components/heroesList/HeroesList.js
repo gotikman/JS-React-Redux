@@ -11,7 +11,8 @@ import './heroesList.scss';
 
 const HeroesList = () => {
 
-    // const filteredHeroesSelector = createSelector(                          //? перенесено в heroesSlice.js
+    //? перенесено в heroesSlice.js
+    // const filteredHeroesSelector = createSelector(                          
     //     (state) => state.filters.activeFilter,
     //     selectAll,                              
     //     (filter, heroes) => {
@@ -35,7 +36,8 @@ const HeroesList = () => {
     }, []);
 
     const onDelete = useCallback((id) => {
-        request(`http://localhost:3001/heroes/${id}`, "DELETE")
+        // request(`http://localhost:3001/heroes/${id}`, "DELETE")
+        request(`https://my-json-server-database.herokuapp.com/heroes/${id}`, "DELETE")
             .then(data => console.log(data, 'Deleted'))
             .then(dispatch(heroDeleted(id)))
             .catch(err => console.log(err));

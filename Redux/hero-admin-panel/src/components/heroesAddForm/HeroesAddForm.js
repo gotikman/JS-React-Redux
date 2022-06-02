@@ -28,7 +28,8 @@ const HeroesAddForm = () => {
         }
 
         // Відправка данних на сервер у форматі JSON
-        request("http://localhost:3001/heroes", "POST", JSON.stringify(newHero))
+        // request("http://localhost:3001/heroes", "POST", JSON.stringify(newHero))
+        request("https://my-json-server-database.herokuapp.com/heroes", "POST", JSON.stringify(newHero))
             .then(res => console.log(res, 'Отправка успешна'))
             .then(dispatch(heroCreated(newHero)))
             .catch(err => console.log(err));
