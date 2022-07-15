@@ -49,6 +49,8 @@ const App = () => {
                         {/* </div> */}
 
                         <div>
+                            <ThemeSettings />
+
                             <Routes>
                                 {/* dashboard  */}
                                 <Route path="/" element={(<Ecommerce />)} />
