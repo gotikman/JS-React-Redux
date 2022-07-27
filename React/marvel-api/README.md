@@ -1,11 +1,12 @@
-
++ :earth_americas: **GitHub Pages**    https://gotikman.github.io/www-react-api/
 ## Initial Resource
 + Template https://www.figma.com/file/xiC1B6ZlHvbiUK6FO3caxN/Marvel-DB
 + Marvel API https://developer.marvel.com/docs
 
 ## Deploy 
-+ Heroku.com --> https://marvel-api-gotikman.herokuapp.com/www-react-api
 + GitHub Pages --> https://gotikman.github.io/www-react-api/
++ Heroku.com --> https://marvel-api-gotikman.herokuapp.com/www-react-api
+
 
 ## Провірка API
 створюєм дублікат класу для...
