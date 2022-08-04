@@ -1,7 +1,7 @@
 {
   "name": "hero_admin_panel",
   "version": "0.1.0",
-  "homepage": "https://gotikman.github.io/www-redux-toolkit",
+  "homepage": "https://gotikman.github.io/demo-redux-toolkit",
   "private": true,
   "dependencies": {
     "@reduxjs/toolkit": "^1.5.1",

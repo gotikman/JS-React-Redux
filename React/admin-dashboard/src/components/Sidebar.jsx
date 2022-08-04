@@ -27,7 +27,7 @@ const Sidebar = () => {
                 <>
                     <div className="flex justify-between items-center">
                         <Link
-                            to="/www-react-dashboard/"
+                            to="/demo-admin-dashboard/"
                             onClick={handleCloseSideBar}
                             className="items-center gap-3 ml-3 mt-4 flex text-xl font-extrabold tracking-tight dark:text-white text-slate-900">
                             <SiShopware /> <span>Shoppy</span>
@@ -52,7 +52,7 @@ const Sidebar = () => {
                                 </p>
                                 {item.links.map((link) => (
                                     <NavLink
-                                        to={`/www-react-dashboard/${link.name}/`}
+                                        to={`/demo-admin-dashboard/${link.name}/`}
                                         key={link.name}
                                         onClick={handleCloseSideBar}
                                         style={({ isActive }) => ({
