@@ -53,7 +53,14 @@ let students = {
         pro: [{
             name: 'Sam',
             progress: 10
-        }]
+        }],
+
+        // semi: {                         // fn циклом з цими даними вже працювати не буде
+        //     students: [{
+        //         name: 'Test',
+        //         progress: 100
+        //     }]
+        // }
     }
 };
 
@@ -89,10 +96,36 @@ function getTotalProgressByIteration(data) {
 
 console.log(getTotalProgressByIteration(students));
 
-// ------------- функція на рекурсію
+//! -------- основна функція на рекурсію
 function getTotalProgressByRecursion(data) {
 
+    if (Array.isArray(data)) {                       //! база - масив
+        let total = 0;
+
+        for (let i = 0; i < data.length; i++) {
+            total += data[i].progress;
+        }
+
+        return [total, data.length]                  // повертаєм обидва значення як масив
+
+    } else {                                         //! сама рекурсія
+        let total = [0, 0];                          // [total, students]
+
+        for (let subData of Object.values(data)) {
+            const subDataArr = getTotalProgressByRecursion(subData);
+            total[0] += subDataArr[0];
+            total[1] += subDataArr[1];
+        }
+
+        return total;
+    }
 }
 
+const result = getTotalProgressByRecursion(students);
+
+console.log(result[0] / result[1])
 
 
+let arr = [1, 2, 3];
+
+console.log(arr.isArray())
