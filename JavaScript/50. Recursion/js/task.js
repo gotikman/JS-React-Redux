@@ -1,6 +1,6 @@
 "use strict";
 
-// (*) Задача на рекурсию
+//todo Задача на рекурсию
 // Здесь мы с вами рассмотрим одну из классических задач на рекурсию, которую дают на собеседованиях. Звучит она очень просто:
 
 //todo Напишите функцию, которая вычисляет факториал.
@@ -21,16 +21,21 @@
 //* 5! = 5 * 4 * 3 * 2 * 1 = 120
 // То есть, вызов нашей функции factorial(5) возвращает число 120
 
-//* factorial(4) => 24
+function factorial(n) {
+    if (typeof (n) !== 'number' || !Number.isInteger(n)) {
+        return "Помилка данних!!!";
+    }
 
-// Решить задачу нужно через рекурсию.
-// Ответ с кодом этой задачи можно найти тут: 
-// https://github.com/yankovalenko94/JS_task_answers/blob/master/Tests/1_functions/factorial_recursion.js
+    if (n <= 1) {
+        return 1;
+    } else {
+        return n * factorial(n - 1)
+    }
 
-
-function factorial() {
-
+    // return n ? n * factorial(n - 1) : 1;  // короткий запис, але не враховує відємні числа
 }
 
-const result = factorial(4);
+const result = factorial(5);
 console.log(result);
+
+
