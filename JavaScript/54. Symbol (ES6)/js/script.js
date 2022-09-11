@@ -21,11 +21,11 @@ obj[newSymbol] = 'New Symbol';
 //! Отримуєм Symbol та їх значення
 console.log(obj.getId());                               // =>> метод отримання Symbol 'id'
 console.log(Object.getOwnPropertySymbols(obj));         // =>> отримаєм [ Масив ] Symbols обєкту
-console.log(obj[Object.getOwnPropertySymbols(obj)[2]]); // =>> отримаєм значення 1-о Symbol
+console.log(obj[Object.getOwnPropertySymbols(obj)[2]]); // =>> отримаєм значення 3-о Symbol
 
 //! Перезаписуєм значення Symbol
 obj[Object.getOwnPropertySymbols(obj)[2]] = 'New Symbol + modified'
-// console.log(obj);
+console.log(obj);
 
 //? циклом перебрав масив Symbols і вивів значення
 // for (let value in Object.getOwnPropertySymbols(obj)) {
