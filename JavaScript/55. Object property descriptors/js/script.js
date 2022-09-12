@@ -23,7 +23,7 @@ console.log(Object.getOwnPropertyDescriptor(user, 'birthday'));         //? пе
 //! method: defineProperty
 Object.defineProperty(user, 'birthday', { writable: false });           //? змінюєм flags конкретної властивості
 Object.defineProperty(user, 'gender', { value: 'male' });               //! створив властивіть, усі flags -> false 
-Object.defineProperty(user, 'age', {                                    //? створив властивість з потрібними параметрами
+Object.defineProperty(user, 'age', {                                    //! створив властивість з потрібними параметрами
     value: prompt('age?'),
     enumerable: true,
     configurable: true

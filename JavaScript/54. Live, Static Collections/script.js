@@ -24,4 +24,4 @@ boxesQuery.forEach(box => {
 
 //? ---------------- *.closest(*) ----------------------
 
-console.log(boxesQuery[2].closest('.wrapper'));
+console.log(boxesQuery[2].closest('.wrapper'));          // повертає ближній батьківський елемент
