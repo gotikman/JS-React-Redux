@@ -1,5 +1,5 @@
 
-## Projects  
+## Demo projects  
 | Name | Demo & Repo | Technologies |
 |----------------|:---------:|----------------|
 | :white_check_mark: Marvel API | [Link](https://github.com/gotikman/JS-React-Redux/tree/master/React/marvel-api) | React, API, Router, Skeleton, Spinner, 404|
