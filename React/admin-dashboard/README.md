@@ -1,7 +1,8 @@
-## Admin Dashboard
-This Demo web application is an E-Commerce Dashboard with the following integrated solutions.
+# Admin Dashboard
+This web application is an E-Commerce Dashboard with the following integrated solutions.
 
-Try it :point_right: https://gotikman.github.io/demo-admin-dashboard/
+### Demo:
++ Try it :point_right: https://gotikman.github.io/demo-admin-dashboard/
 
 ### Features:
 + Theme: Light & Dark
@@ -16,11 +17,11 @@ Try it :point_right: https://gotikman.github.io/demo-admin-dashboard/
 + Routing: React Router
 + UI: Syncfusion React JS components 
 
-### Resources:
+## Resources
 + ⭐[Syncfusion React Components](https://www.syncfusion.com/react-ui-components)
 + ⭐[Tailwind CSS with Create React App](https://tailwindcss.com/docs/guides/create-react-app)
 
-### Images:
+## Images
 <details>
 <summary>Click to open</summary>
 
