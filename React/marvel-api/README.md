@@ -1,7 +1,7 @@
 ![Screenshot_2](https://user-images.githubusercontent.com/78754655/200855225-d2af004c-f6db-44d8-887e-c59a6ac408da.jpg)
 
 # Marvel API
-It's a web application that fetches data about heroes and comics via API from the official portal.
+It's a web application that fetches data about Marvel heroes and comics via API from the official portal.
 
 
 ### Demo:
